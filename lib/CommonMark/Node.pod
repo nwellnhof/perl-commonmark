@@ -22,14 +22,14 @@ CommonMark::Node - Node of the CommonMark parse tree
 
 C<CommonMark::Node> represents a node of the parse tree.
 
-=head2 Constructor
+=head2 new
 
    my $node = CommonMark::Node->new($type);
 
 Creates a new node of type C<$type>. See L</"Node types"> for a list of
 types.
 
-=head2 Iterators
+=head2 iterator
 
     my $iterator = $node->iterator;
 
@@ -54,7 +54,8 @@ C<$options> is a bit field created by ORing the following constants:
     CommonMark::OPT_HARDBREAKS => 2
     CommonMark::OPT_NORMALIZE  => 4
 
-See the documentation of I<libcmark> for more details.
+C<$options> may be omitted and defaults to C<OPT_DEFAULT>. See the
+documentation of I<libcmark> for more details.
 
 =head2 Accessors
 
@@ -119,7 +120,7 @@ C<unlink> removes a node and all its descendants from the tree.
 
 C<insert_before> and C<insert_after> insert the C<$other> node before or
 after C<$node>. C<append_child> and C<prepend_child> append or prepend
-<$other> to the children of <$node>.
+C<$other> to the children of C<$node>.
 
 C<$other> is unlinked before it is inserted into its new position.
 
@@ -164,7 +165,7 @@ These methods may die on failure.
 =head1 COPYRIGHT
 
 This software is copyright (C) by Nick Wellnhofer.
- 
+
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 

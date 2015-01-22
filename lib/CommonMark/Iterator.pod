@@ -109,7 +109,7 @@ root node.
 =head1 COPYRIGHT
 
 This software is copyright (C) by Nick Wellnhofer.
- 
+
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 

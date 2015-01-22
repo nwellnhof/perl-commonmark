@@ -252,8 +252,6 @@ parse tree is made. L<CommonMark::Iterator> is a useful class to walk
 through the nodes in a tree. L<CommonMark::Parser> provides a push parser
 interface.
 
-=head1 FUNCTIONS
-
 =head2 markdown_to_html
 
     my $html = CommonMark->markdown_to_html($markdown);
@@ -336,7 +334,7 @@ L<CommonMark::Node> of the document root.
         children => \@children,
         text     => $literal,
     );
-    my $softbreak= CommonMark->create_softbreak;
+    my $softbreak = CommonMark->create_softbreak;
     my $linebreak = CommonMark->create_linebreak;
 
 These convenience functions can be used to create nodes, set properties,
@@ -350,7 +348,7 @@ parameters correspond to a node property.
 =head1 COPYRIGHT
 
 This software is copyright (C) by Nick Wellnhofer.
- 
+
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
