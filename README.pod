@@ -1,6 +1,7 @@
 =head1 Perl bindings for the CommonMark C library
 
-This module is wrapper around I<libcmark>, the official CommonMark C library.
+This module is a wrapper around I<libcmark>, the official CommonMark C
+library.
 
 =head2 Installation from a CPAN tarball
 
@@ -27,8 +28,8 @@ The I<PERL_MM_OPT> environment variable is especially useful.
 
 =head2 Build from a repository checkout 
 
-You need I<Dist::Zilla> with the external plugins I<MakeMaker::Awesome> and
-I<PodWeaver>. Then you can build and test with I<dzil>:
+You need I<Dist::Zilla> with the external plugin I<MakeMaker::Awesome>.
+Then you can build and test with I<dzil>:
 
     dzil test
     dzil build
