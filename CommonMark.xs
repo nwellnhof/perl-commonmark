@@ -134,6 +134,12 @@ MODULE = CommonMark  PACKAGE = CommonMark  PREFIX = cmark_
 
 PROTOTYPES: DISABLE
 
+BOOT:
+    if (cmark_version != CMARK_VERSION) {
+        warn("Compiled against libcmark %s, but runtime version is %s",
+             CMARK_VERSION_STRING, cmark_version_string);
+    }
+
 char*
 cmark_markdown_to_html(package, string)
     SV *package = NO_INIT
