@@ -182,6 +182,42 @@ CODE:
 OUTPUT:
     RETVAL
 
+int
+cmark_version(package)
+    SV *package = NO_INIT
+CODE:
+    (void)package;
+    RETVAL = cmark_version;
+OUTPUT:
+    RETVAL
+
+const char*
+cmark_version_string(package)
+    SV *package = NO_INIT
+CODE:
+    (void)package;
+    RETVAL = cmark_version_string;
+OUTPUT:
+    RETVAL
+
+int
+cmark_compile_time_version(package)
+    SV *package = NO_INIT
+CODE:
+    (void)package;
+    RETVAL = CMARK_VERSION;
+OUTPUT:
+    RETVAL
+
+const char*
+cmark_compile_time_version_string(package)
+    SV *package = NO_INIT
+CODE:
+    (void)package;
+    RETVAL = CMARK_VERSION_STRING;
+OUTPUT:
+    RETVAL
+
 
 MODULE = CommonMark  PACKAGE = CommonMark::Node  PREFIX = cmark_node_
 

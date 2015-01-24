@@ -115,6 +115,16 @@ children. The special C<text> parameter adds a single text child with
 literal C<$literal>. It can't be used together with C<children>. All other
 parameters correspond to a node property.
 
+=head2 libcmark version information
+
+    my $version = CommonMark->version;
+    my $string  = CommonMark->version_string;
+    my $version = CommonMark->compile_time_version;
+    my $string  = CommonMark->compile_time_version_string;
+
+Return the version number or version string of libcmark, either the
+library version linked against at run time or compile time.
+
 =head1 COPYRIGHT
 
 This software is copyright (C) by Nick Wellnhofer.
