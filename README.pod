@@ -3,6 +3,16 @@
 This module is a wrapper around I<libcmark>, the official CommonMark C
 library.
 
+=head2 Installation of libcmark
+
+    git clone git@github.com:jgm/CommonMark.git
+    cd CommonMark
+    make [INSTALL_PREFIX=/prefix]
+    make test
+    make install
+
+See the I<libcmark> README for details.
+
 =head2 Installation from a CPAN tarball
 
 If I<libcmark> is in a standard location:
