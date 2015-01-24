@@ -22,6 +22,10 @@
 #include <stdlib.h>
 #include <cmark.h>
 
+#if CMARK_VERSION < 0x001000
+    #error libcmark 0.16.0 is required.
+#endif
+
 /* Fix prefixes of render functions. */
 #define cmark_node_render_html cmark_render_html
 #define cmark_node_render_xml  cmark_render_xml
