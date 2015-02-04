@@ -5,8 +5,8 @@ library.
 
 =head2 Installation of libcmark
 
-    git clone git@github.com:jgm/CommonMark.git
-    cd CommonMark
+    git clone git@github.com:jgm/cmark.git
+    cd cmark
     make [INSTALL_PREFIX=/prefix]
     make test
     make install
