@@ -1,5 +1,11 @@
 Revision history for Perl module CommonMark
 
+0.1700  2015-02-04
+    - Check for libcmark with Devel::CheckLib.
+    - Accessors for libcmark version.
+    - Require libcmark 0.16.
+    - Improve and fix documentation.
+
 0.1601  2015-01-22
-    - Initial release
+    - Initial release.
 

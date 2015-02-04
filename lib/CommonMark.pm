@@ -5,7 +5,7 @@ use warnings;
 
 use XSLoader;
 
-our $VERSION = '0.1601';
+our $VERSION = '0.1700';
 XSLoader::load('CommonMark', $VERSION);
 
 use constant {
