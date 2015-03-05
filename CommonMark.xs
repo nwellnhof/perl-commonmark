@@ -155,23 +155,25 @@ OUTPUT:
     RETVAL
 
 cmark_node*
-cmark_parse_document(package, string)
+cmark_parse_document(package, string, options = 0)
     SV *package = NO_INIT
     SV *string
+    int options
 PREINIT:
     STRLEN len;
     const char *buffer;
 CODE:
     (void)package;
     buffer = SvPVutf8(string, len);
-    RETVAL = cmark_parse_document(buffer, len);
+    RETVAL = cmark_parse_document(buffer, len, options);
 OUTPUT:
     RETVAL
 
 cmark_node*
-cmark_parse_file(package, file)
+cmark_parse_file(package, file, options = 0)
     SV *package = NO_INIT
     SV *file
+    int options
 PREINIT:
     PerlIO *perl_io;
     FILE *stream = NULL;
@@ -184,7 +186,7 @@ CODE:
     if (!stream) {
         croak("parse_file: file is not a file handle");
     }
-    RETVAL = cmark_parse_file(stream);
+    RETVAL = cmark_parse_file(stream, options);
 OUTPUT:
     RETVAL
 
@@ -343,7 +345,7 @@ POSTCALL:
     S_transfer_refcount(aTHX_ old_parent, new_parent);
 
 char*
-interface_render(cmark_node *root, long options = 0)
+interface_render(cmark_node *root, int options = 0)
 INTERFACE:
     cmark_node_render_html
     cmark_node_render_xml

@@ -37,17 +37,30 @@ Equivalent to
 
 =head2 parse_document
 
-    my $doc = CommonMark->parse_document($markdown)
+    my $doc = CommonMark->parse_document( $markdown, [$options] )
 
 Parses a CommonMark document from a string returning the L<CommonMark::Node>
-of the document root.
+of the document root. C<$options> is a bit field containing the parser
+options. It defaults to C<OPT_DEFAULT>.
 
 =head2 parse_file
 
-    my $doc = CommonMark->parse_file($file);
+    my $doc = CommonMark->parse_file( $file, [$options] );
 
 Parses a CommonMark document from a file handle returning the
-L<CommonMark::Node> of the document root.
+L<CommonMark::Node> of the document root. C<$options> is a bit field
+containing the parser. It defaults to C<OPT_DEFAULT>.
+
+=head2 Parser options
+
+The parser options are a bit field created by ORing the following constants:
+
+    CommonMark::OPT_DEFAULT => 0
+    CommonMark::OPT_SMART   => 8
+
+C<OPT_SMART> enables the "smart quote" features which turns vertical into
+typographic quotation marks, double hyphens into en dashes, and triple
+hyphens into em dashes.
 
 =head2 Node creation
 
