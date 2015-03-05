@@ -23,7 +23,7 @@ is(CommonMark->markdown_to_html($md), $expected_html, 'markdown_to_html');
 my $doc = CommonMark->parse_document($md);
 isa_ok($doc, 'CommonMark::Node', 'parse_document');
 
-is($doc->render_html, $expected_html, 'parse_file works');
+is($doc->render_html, $expected_html, 'parse_document works');
 
 like($doc->render_xml, qr/^<\?xml /, 'render_xml');
 like($doc->render_man, qr/^\.SH\n/, 'render_man');
