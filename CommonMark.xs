@@ -22,8 +22,8 @@
 #include <stdlib.h>
 #include <cmark.h>
 
-#if CMARK_VERSION < 0x001000
-    #error libcmark 0.16.0 is required.
+#if CMARK_VERSION < 0x001200
+    #error libcmark 0.18.0 is required.
 #endif
 
 /* Fix prefixes of render functions. */
