@@ -1,5 +1,11 @@
 Revision history for Perl module CommonMark
 
+0.1800  2015-03-05
+    - Adjust to API changes in libcmark 0.18.
+    - Require libcmark 0.18.
+    - Add "parse" convenience function.
+    - Fix build with old EUMM versions.
+
 0.1700  2015-02-04
     - Check for libcmark with Devel::CheckLib.
     - Accessors for libcmark version.
