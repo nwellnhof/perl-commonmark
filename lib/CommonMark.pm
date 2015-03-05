@@ -49,6 +49,30 @@ use constant {
     OPT_SMART      => 8,
 };
 
+sub parse {
+    my ($class, %opts) = @_;
+
+    my ($string, $file, $smart) = @opts{ qw(string file smart) };
+
+    my $parser_opts = 0;
+    $parser_opts |= OPT_SMART if $smart;
+
+    my $doc;
+    if (defined($string)) {
+        die("can't provide both string and file")
+            if defined($file);
+        $doc = $class->parse_document($string, $parser_opts);
+    }
+    elsif (defined($file)) {
+        $doc = $class->parse_file($file, $parser_opts);
+    }
+    else {
+        die("must provide either string or file");
+    }
+
+    return $doc;
+}
+
 sub create_document {
     my (undef, %opts) = @_;
     my $node = CommonMark::Node->new(NODE_DOCUMENT);

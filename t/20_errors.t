@@ -2,7 +2,7 @@ use strict;
 use warnings;
 
 use Symbol;
-use Test::More tests => 7;
+use Test::More tests => 9;
 
 BEGIN {
     use_ok('CommonMark');
@@ -63,4 +63,14 @@ eval {
 };
 like($@, qr/can't set both children and text/,
      'create_text with children and text');
+
+eval {
+    my $doc = CommonMark->parse(smart => 1);
+};
+like($@, qr/must provide either string or file/, 'parse without input');
+
+eval {
+    my $doc = CommonMark->parse(string => 'md', file => \*STDIN);
+};
+like($@, qr/can't provide both string and file/, 'parse with string and file');
 

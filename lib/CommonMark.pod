@@ -35,6 +35,23 @@ Equivalent to
 
     my $html = CommonMark->parse_document($markdown)->render_html;
 
+=head2 parse
+
+    my $doc = CommonMark->parse(
+        string => $string,
+        smart  => $smart,   # Optional
+    );
+
+    my $doc = CommonMark->parse(
+        file  => $file,
+        smart => $smart,    # Optional
+    );
+
+Convenience function to parse documents. Exactly one of the C<string> or
+C<file> options must be provided. When given a string, calls
+C<parse_document>. When given a file, calls C<parse_file>. If C<smart>
+if provided and true, enables the C<OPT_SMART> parser option.
+
 =head2 parse_document
 
     my $doc = CommonMark->parse_document( $markdown, [$options] )
