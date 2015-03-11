@@ -16,9 +16,10 @@ documents.
 
 =head2 new
 
-   my $parser = CommonMark::Parser->new;
+   my $parser = CommonMark::Parser->new( [$options] );
 
-Creates a parser object.
+Creates a parser object. C<$options> is a bit field containing the parser
+options. It defaults to C<OPT_DEFAULT>. See L<CommonMark/"Parser options">.
 
 =head2 feed
 

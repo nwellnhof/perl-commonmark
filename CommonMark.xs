@@ -427,11 +427,12 @@ INIT:
 MODULE = CommonMark  PACKAGE = CommonMark::Parser  PREFIX = cmark_parser_
 
 cmark_parser*
-cmark_parser_new(package)
+cmark_parser_new(package, options = 0)
     SV *package = NO_INIT
+    int options
 CODE:
     (void)package;
-    RETVAL = cmark_parser_new();
+    RETVAL = cmark_parser_new(options);
 OUTPUT:
     RETVAL
 
