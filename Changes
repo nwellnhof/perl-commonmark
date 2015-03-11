@@ -1,5 +1,9 @@
 Revision history for Perl module CommonMark
 
+0.1801  2015-03-11
+    - Fix Parser->new to work correctly with libcmark 0.18.
+      Also fixes compilation with libcmark 0.18.1.
+
 0.1800  2015-03-05
     - Adjust to API changes in libcmark 0.18.
     - Require libcmark 0.18.
