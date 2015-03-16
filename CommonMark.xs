@@ -92,7 +92,7 @@ S_decref_node_sv(pTHX_ cmark_node *node) {
         croak("Internal error: node SV not found");
     }
 
-    SvREFCNT_dec_NN(obj);
+    SvREFCNT_dec(obj);
 }
 
 /* Find or create an SV for a cmark_node. */
