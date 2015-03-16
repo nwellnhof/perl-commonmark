@@ -15,9 +15,9 @@ L<version 0.18|https://github.com/jgm/cmark/releases/tag/0.18> and possibly
 can't be compiled with later versions. For the time being, the version of
 the Perl bindings is kept in sync with the I<libcmark> version.
 
-    curl -LJO https://github.com/jgm/cmark/archive/0.18.tar.gz
-    tar xzf cmark-0.18.tar.gz
-    cd cmark-0.18
+    curl -LJO https://github.com/jgm/cmark/archive/0.18.1.tar.gz
+    tar xzf cmark-0.18.1.tar.gz
+    cd cmark-0.18.1
     make [INSTALL_PREFIX=/prefix]
     make test
     make install
