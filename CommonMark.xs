@@ -23,7 +23,11 @@
 #include <cmark.h>
 
 #if CMARK_VERSION < 0x001200
-    #error libcmark 0.18.0 is required.
+  #error libcmark 0.18.0 is required.
+#endif
+
+#if PERL_VERSION <= 14
+  #define sv_derived_from_pvn(sv, name, len, flags) sv_derived_from(sv, name)
 #endif
 
 /* Fix prefixes of render functions. */
@@ -64,7 +68,7 @@ S_create_or_incref_node_sv(pTHX_ cmark_node *node) {
          * sv_bless.
          */
         SvOBJECT_on(obj);
-#if (PERL_VERSION <= 16)
+#if PERL_VERSION <= 16
         PL_sv_objcount++;
 #endif
         SvUPGRADE(obj, SVt_PVMG);
