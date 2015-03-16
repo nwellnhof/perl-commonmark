@@ -4,7 +4,9 @@ perl:
   - "5.14"
   - "5.20"
 before_install:
-  - curl -LJO https://github.com/jgm/cmark/archive/0.18.tar.gz
-  - tar xzf cmark-0.18.tar.gz
+  - echo 'yes' | sudo add-apt-repository ppa:kalakris/cmake
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq cmake
+  - curl -L https://github.com/jgm/cmark/archive/0.18.tar.gz | tar xz
   - cd cmark-0.18 && make install
 
