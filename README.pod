@@ -1,3 +1,7 @@
+=begin html
+
+=end html
+
 =head1 Perl bindings for the CommonMark C library
 
 This module is a wrapper around I<libcmark>, the official CommonMark C

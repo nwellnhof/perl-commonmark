@@ -1,0 +1,10 @@
+language: perl
+perl:
+  - "5.8"
+  - "5.14"
+  - "5.20"
+before_install:
+  - curl -LJO https://github.com/jgm/cmark/archive/0.18.tar.gz
+  - tar xzf cmark-0.18.tar.gz
+  - cd cmark-0.18 && make install
+
