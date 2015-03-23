@@ -6,7 +6,7 @@ matrix:
   include:
     - perl: "5.20"
       env:
-        - COVERAGE=1
+        - COVERAGE=1 COVERAGE_OPTS='-ignore_re /CORE/\w+\.h$'
 before_install:
   - echo 'yes' | sudo add-apt-repository ppa:kalakris/cmake
   - sudo apt-get update -qq
