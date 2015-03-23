@@ -4,7 +4,7 @@ perl:
   - "5.14"
 matrix:
   include:
-    - perl: 5.20
+    - perl: "5.20"
       env: COVERAGE=1
 before_install:
   - echo 'yes' | sudo add-apt-repository ppa:kalakris/cmake
