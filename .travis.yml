@@ -5,7 +5,8 @@ perl:
 matrix:
   include:
     - perl: "5.20"
-      env: COVERAGE=1
+      env:
+        - COVERAGE=1 PERL_MM_OPT='OPTIMIZE="-O0 -fprofile-arcs -ftest-coverage" OTHERLDFLAGS="-fprofile-arcs -ftest-coverage"'
 before_install:
   - echo 'yes' | sudo add-apt-repository ppa:kalakris/cmake
   - sudo apt-get update -qq
