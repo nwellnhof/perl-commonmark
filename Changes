@@ -1,5 +1,8 @@
 Revision history for Perl module CommonMark
 
+0.180300  ?
+    - Require libcmark 0.18.3
+
 0.1802  2015-03-16
     - Fix build with Perl <= 5.14.
     - Test with Travis CI.

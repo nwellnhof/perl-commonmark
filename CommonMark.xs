@@ -22,8 +22,8 @@
 #include <stdlib.h>
 #include <cmark.h>
 
-#if CMARK_VERSION < 0x001200
-  #error libcmark 0.18.0 is required.
+#if CMARK_VERSION < 0x001203
+  #error libcmark 0.18.3 is required.
 #endif
 
 #if PERL_VERSION <= 14

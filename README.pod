@@ -12,13 +12,13 @@ library.
 
 Please note that the I<libcmark> API isn't stable yet. This version of the
 Perl bindings requires
-L<version 0.18|https://github.com/jgm/cmark/releases/tag/0.18> and possibly
+L<version 0.18.3|https://github.com/jgm/cmark/releases/tag/0.18.3> and possibly
 can't be compiled with later versions. For the time being, the version of
 the Perl bindings is kept in sync with the I<libcmark> version.
 
-    curl -LJO https://github.com/jgm/cmark/archive/0.18.1.tar.gz
-    tar xzf cmark-0.18.1.tar.gz
-    cd cmark-0.18.1
+    curl -LJO https://github.com/jgm/cmark/archive/0.18.3.tar.gz
+    tar xzf cmark-0.18.3.tar.gz
+    cd cmark-0.18.3
     make [INSTALL_PREFIX=/prefix]
     make test
     make install
