@@ -145,16 +145,17 @@ BOOT:
     }
 
 char*
-cmark_markdown_to_html(package, string)
+cmark_markdown_to_html(package, string, options = 0)
     SV *package = NO_INIT
     SV *string
+    int options
 PREINIT:
     STRLEN len;
     const char *buffer;
 CODE:
     (void)package;
     buffer = SvPVutf8(string, len);
-    RETVAL = cmark_markdown_to_html(buffer, len);
+    RETVAL = cmark_markdown_to_html(buffer, len, options);
 OUTPUT:
     RETVAL
 
