@@ -31,9 +31,10 @@
 #endif
 
 /* Fix prefixes of render functions. */
-#define cmark_node_render_html cmark_render_html
-#define cmark_node_render_xml  cmark_render_xml
-#define cmark_node_render_man  cmark_render_man
+#define cmark_node_render_html        cmark_render_html
+#define cmark_node_render_xml         cmark_render_xml
+#define cmark_node_render_man         cmark_render_man
+#define cmark_node_render_commonmark  cmark_render_commonmark
 
 static SV*
 S_create_or_incref_node_sv(pTHX_ cmark_node *node) {
@@ -355,6 +356,9 @@ INTERFACE:
     cmark_node_render_html
     cmark_node_render_xml
     cmark_node_render_man
+
+char*
+cmark_node_render_commonmark(cmark_node *root, int options = 0, int width = 0)
 
 
 MODULE = CommonMark  PACKAGE = CommonMark::Iterator  PREFIX = cmark_iter_

@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 8;
+use Test::More tests => 9;
 
 BEGIN {
     use_ok('CommonMark');
@@ -27,6 +27,15 @@ is($doc->render_html, $expected_html, 'parse_document works');
 
 like($doc->render_xml, qr/^<\?xml /, 'render_xml');
 like($doc->render_man, qr/^\.SH\n/, 'render_man');
+
+my $rendered_md = $doc->render_commonmark(CommonMark::OPT_DEFAULT, 20);
+my $expected_md = <<'EOF';
+# Header
+
+Paragraph *emph*,
+**strong**
+EOF
+is($rendered_md, $expected_md, 'render_commonmark');
 
 is(CommonMark->markdown_to_html("\x{263A}"), "<p>\xE2\x98\xBA</p>\n",
    'render functions return encoded utf8');

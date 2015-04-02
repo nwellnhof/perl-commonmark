@@ -41,6 +41,7 @@ the node.
     my $html = $node->render_html( [$options] )
     my $xml  = $node->render_xml( [$options] )
     my $man  = $node->render_man( [$options] )
+    my $md   = $node->render_commonmark( [$options], [$width] )
 
 These methods render the contents of the node in the respective format and
 return an B<encoded> UTF-8 byte string. This is useful when passing the
@@ -56,6 +57,9 @@ C<$options> is a bit field created by ORing the following constants:
 
 C<$options> may be omitted and defaults to C<OPT_DEFAULT>. See the
 documentation of I<libcmark> for more details.
+
+C<$width> specifies the number of characters at which lines are broken.
+A value of 0 disables line wrapping. The default is 0.
 
 =head2 Accessors
 
