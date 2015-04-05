@@ -97,7 +97,7 @@ A value of 0 disables line wrapping. The default is 0.
 
 Various accessors to get and set integer and string values of a node. Not
 all values are supported by every type of node. Getters return C<0> or
-C<undef> for unsupported values. Setters die on faliure.
+C<undef> for unsupported values. Setters die on failure.
 
 See L</"Constants"> for a list of constants used for node types, list
 types, and list delimiters.

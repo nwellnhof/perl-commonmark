@@ -51,7 +51,7 @@ Equivalent to
 Convenience function to parse documents. Exactly one of the C<string> or
 C<file> options must be provided. When given a string, calls
 C<parse_document>. When given a file, calls C<parse_file>. If C<smart>
-if provided and true, enables the C<OPT_SMART> parser option.
+is provided and true, enables the C<OPT_SMART> parser option.
 
 =head2 parse_document
 
