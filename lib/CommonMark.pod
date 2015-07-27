@@ -26,10 +26,7 @@ interface.
 
     my $html = CommonMark->markdown_to_html( $markdown, [$options] );
 
-Converts a Markdown string to HTML. This methods returns an B<encoded>
-UTF-8 byte string. This is useful when passing the results to external
-parties. If you want to process the string contents, you should consider
-decoding the byte string using C<utf8::decode>. C<$options> is a bit field
+Converts a Markdown string to HTML. C<$options> is a bit field
 containing the parser and render options. It defaults to C<OPT_DEFAULT>.
 
 Equivalent to

@@ -3,7 +3,7 @@ cmark_node *        T_NODE
 cmark_iter *        T_ITER
 cmark_parser *      T_PARSER
 const char *        T_UTF8
-char *              T_PV
+char *              T_UTF8
 # The custom OUTPUT for T_IV generates better code than the default.
 # It looks like this is due to weirdness in ExtUtils::ParseXS which creates
 # suboptimal code for "targetable" return types.
@@ -35,9 +35,6 @@ T_PARSER
 T_UTF8
     $arg = newSVpv($var, 0);
     SvUTF8_on($arg);
-T_PV
-    $arg = newSVpv($var, 0);
-    free($var);
 T_IV
     $arg = newSViv((IV)$var);
 

@@ -28,7 +28,6 @@ BEGIN {
     my $expected_html = <<EOF;
 <p>Pretty \x{201C}smart\x{201D} \x{2013} don\x{2019}t you think?</p>
 EOF
-    utf8::encode($expected_html);
 
     is($doc->render_html, $expected_html, 'parse works with string and smart');
 

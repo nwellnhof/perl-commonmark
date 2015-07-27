@@ -38,9 +38,9 @@ Paragraph *emph*,
 EOF
 is($rendered_md, $expected_md, 'render_commonmark');
 
-is(CommonMark->markdown_to_html("\x{263A}"), "<p>\xE2\x98\xBA</p>\n",
+is(CommonMark->markdown_to_html("\x{263A}"), "<p>\x{263A}</p>\n",
    'render functions return encoded utf8');
 
-is(CommonMark->markdown_to_html("\xC2\xA9"), "<p>\xC3\x82\xC2\xA9</p>\n",
+is(CommonMark->markdown_to_html("\xC2\xA9"), "<p>\xC2\xA9</p>\n",
    'render functions expect decoded utf8');
 

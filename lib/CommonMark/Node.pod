@@ -62,10 +62,7 @@ the node.
     my $md    = $node->render_commonmark( [$options], [$width] )
     my $latex = $node->render_latex( [$options], [$width] )
 
-These methods render the contents of the node in the respective format and
-return an B<encoded> UTF-8 byte string. This is useful when passing the
-results to external parties. If you want to process the string contents,
-you should consider decoding the byte string using C<utf8::decode>.
+These methods render the contents of the node in the respective format.
 
 C<$options> is a bit field created by ORing the following constants:
 
