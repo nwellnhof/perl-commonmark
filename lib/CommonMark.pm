@@ -1,4 +1,3 @@
-package CommonMark;
 use 5.008;
 use strict;
 use warnings;
@@ -7,6 +6,8 @@ use XSLoader;
 
 our $VERSION = '0.210000';
 XSLoader::load('CommonMark', $VERSION);
+
+package CommonMark;
 
 use constant {
     NODE_NONE        =>  0,
@@ -270,6 +271,28 @@ sub _add_link_opts {
     $node->set_title($title) if defined($title);
 
     return _add_children_or_text($node, $opts);
+}
+
+package CommonMark::Node;
+
+sub render {
+    my ($self, %opts) = @_;
+
+    my $format = $opts{format};
+    die("must provide format")
+        if !defined($format);
+    my $method = "render_$format";
+
+    my $render_opts = CommonMark::_extract_opts(\%opts);
+
+    if ($format =~ /^(html|xml)\z/) {
+        return $self->$method($render_opts);
+    }
+    if ($format =~ /^(commonmark|latex|man)\z/) {
+        return $self->$method($render_opts, $opts{width});
+    }
+
+    die("invalid format '$format'");
 }
 
 1;

@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 5;
+use Test::More tests => 6;
 
 BEGIN {
     use_ok('CommonMark');
@@ -31,6 +31,9 @@ EOF
     utf8::encode($expected_html);
 
     is($doc->render_html, $expected_html, 'parse works with string and smart');
+
+    my $html = $doc->render(format => 'html');
+    is($html, $expected_html, 'render works with HTML format');
 }
 
 {
