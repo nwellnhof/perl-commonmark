@@ -140,9 +140,9 @@ MODULE = CommonMark  PACKAGE = CommonMark  PREFIX = cmark_
 PROTOTYPES: DISABLE
 
 BOOT:
-    if (cmark_version != CMARK_VERSION) {
+    if (cmark_version() != CMARK_VERSION) {
         warn("Compiled against libcmark %s, but runtime version is %s",
-             CMARK_VERSION_STRING, cmark_version_string);
+             CMARK_VERSION_STRING, cmark_version_string());
     }
 
 char*
@@ -201,7 +201,7 @@ cmark_version(package)
     SV *package = NO_INIT
 CODE:
     (void)package;
-    RETVAL = cmark_version;
+    RETVAL = cmark_version();
 OUTPUT:
     RETVAL
 
@@ -210,7 +210,7 @@ cmark_version_string(package)
     SV *package = NO_INIT
 CODE:
     (void)package;
-    RETVAL = cmark_version_string;
+    RETVAL = cmark_version_string();
 OUTPUT:
     RETVAL
 
