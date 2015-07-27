@@ -1,5 +1,10 @@
 Revision history for Perl module CommonMark
 
+0.210000  2015-07-27
+    - Require libcmark 0.21.0
+    - Adjust for libcmark API changes
+    - Add support for Latex renderer
+
 0.180300  2015-04-02
     - Require libcmark 0.18.3
     - Add options parameter to markdown_to_html
