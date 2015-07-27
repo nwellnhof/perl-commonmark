@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 3;
+use Test::More tests => 5;
 
 BEGIN {
     use_ok('CommonMark');
@@ -31,5 +31,27 @@ EOF
     utf8::encode($expected_html);
 
     is($doc->render_html, $expected_html, 'parse works with string and smart');
+}
+
+{
+    my $all_opts = CommonMark::_extract_opts({
+        sourcepos     => 1,
+        hardbreaks    => 'yes',
+        normalize     => '0e0',
+        smart         => 'true',
+        validate_utf8 => '1',
+        safe          => 100,
+    });
+    is($all_opts, 63, 'extracting options works');
+
+    my $no_opts = CommonMark::_extract_opts({
+        sourcepos     => undef,
+        hardbreaks    => 0,
+        normalize     => 0e100,
+        smart         => '',
+        validate_utf8 => '0',
+        safe          => -0.0,
+    });
+    is($no_opts, 0, 'extracting unset options works');
 }
 

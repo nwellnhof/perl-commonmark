@@ -54,13 +54,19 @@ C<$options> is a bit field created by ORing the following constants:
     CommonMark::OPT_DEFAULT       =>  0
     CommonMark::OPT_SOURCEPOS     =>  1
     CommonMark::OPT_HARDBREAKS    =>  2
-    CommonMark::OPT_NORMALIZE     =>  4
-    CommonMark::OPT_SMART         =>  8
-    CommonMark::OPT_VALIDATE_UTF8 => 16
     CommonMark::OPT_SAFE          => 32
 
 C<$options> may be omitted and defaults to C<OPT_DEFAULT>. See the
 documentation of I<libcmark> for more details.
+
+C<SOURCEPOS> adds information about line numbers in the source file to the
+XML and HTML formats.
+
+C<HARDBREAKS> translates newlines in the input to line breaks in the output.
+This is only supported by some renderers.
+
+C<SAFE> only affects the HTML renderer. It suppresses raw HTML blocks and
+some dangerous links.
 
 C<$width> specifies the number of characters at which lines are broken.
 A value of 0 disables line wrapping. The default is 0.

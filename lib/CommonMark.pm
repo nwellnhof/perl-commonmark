@@ -51,13 +51,21 @@ use constant {
     OPT_SAFE          => 32,
 };
 
+my @option_map = (
+    sourcepos     =>  1,
+    hardbreaks    =>  2,
+    normalize     =>  4,
+    smart         =>  8,
+    validate_utf8 => 16,
+    safe          => 32,
+);
+
 sub parse {
     my ($class, %opts) = @_;
 
-    my ($string, $file, $smart) = @opts{ qw(string file smart) };
+    my ($string, $file) = @opts{ qw(string file) };
 
-    my $parser_opts = 0;
-    $parser_opts |= OPT_SMART if $smart;
+    my $parser_opts = _extract_opts(\%opts);
 
     my $doc;
     if (defined($string)) {
@@ -73,6 +81,19 @@ sub parse {
     }
 
     return $doc;
+}
+
+sub _extract_opts {
+    my $hash = shift;
+
+    my $int = 0;
+
+    for (my $i = 0; $i < @option_map; $i += 2) {
+        my ($name, $val) = @option_map[$i,$i+1];
+        $int |= $val if $hash->{$name};
+    }
+
+    return $int;
 }
 
 sub create_document {

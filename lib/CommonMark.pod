@@ -39,19 +39,24 @@ Equivalent to
 =head2 parse
 
     my $doc = CommonMark->parse(
-        string => $string,
-        smart  => $smart,   # Optional
+        string        => $string,
+        normalize     => $normalize,      # Optional
+        smart         => $smart,          # Optional
+        validate_utf8 => $validate_utf8,  # Optional
     );
 
     my $doc = CommonMark->parse(
-        file  => $file,
-        smart => $smart,    # Optional
+        file          => $file,
+        normalize     => $normalize,      # Optional
+        smart         => $smart,          # Optional
+        validate_utf8 => $validate_utf8,  # Optional
     );
 
 Convenience function to parse documents. Exactly one of the C<string> or
 C<file> options must be provided. When given a string, calls
-C<parse_document>. When given a file, calls C<parse_file>. If C<smart>
-is provided and true, enables the C<OPT_SMART> parser option.
+C<parse_document>. When given a file, calls C<parse_file>. C<normalize>,
+C<smart>, and C<validate_utf8> enable the respective
+L<parser options|/"Parser options">.
 
 =head2 parse_document
 
@@ -73,12 +78,21 @@ containing the parser options. It defaults to C<OPT_DEFAULT>.
 
 The parser options are a bit field created by ORing the following constants:
 
-    CommonMark::OPT_DEFAULT => 0
-    CommonMark::OPT_SMART   => 8
+    CommonMark::OPT_DEFAULT       => 0
+    CommonMark::OPT_NORMALIZE     => 4
+    CommonMark::OPT_SMART         => 8
+    CommonMark::OPT_VALIDATE_UTF8 => 16,
+
+C<OPT_NORMALIZE> makes sure that adjacent text nodes are merged in the parse
+tree.
 
 C<OPT_SMART> enables the "smart quote" features which turns vertical into
 typographic quotation marks, double hyphens into en dashes, and triple
 hyphens into em dashes.
+
+C<OPT_VALIDATE_UTF8> turns on UTF-8 validation. Normally, this isn't
+necessary because Perl should always provide proper UTF-8. The option may
+be used if you don't trust the safety of Perl's internal UTF-8 handling.
 
 =head2 Node creation
 
