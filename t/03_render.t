@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 9;
+use Test::More tests => 10;
 
 BEGIN {
     use_ok('CommonMark');
@@ -27,6 +27,7 @@ is($doc->render_html, $expected_html, 'parse_document works');
 
 like($doc->render_xml, qr/^<\?xml /, 'render_xml');
 like($doc->render_man, qr/^\.SH\n/, 'render_man');
+like($doc->render_latex, qr/^\\section{Header}/, 'render_latex');
 
 my $rendered_md = $doc->render_commonmark(CommonMark::OPT_DEFAULT, 20);
 my $expected_md = <<'EOF';

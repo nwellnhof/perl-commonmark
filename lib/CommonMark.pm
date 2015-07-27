@@ -42,11 +42,13 @@ use constant {
     EVENT_ENTER => 2,
     EVENT_EXIT  => 3,
 
-    OPT_DEFAULT    => 0,
-    OPT_SOURCEPOS  => 1,
-    OPT_HARDBREAKS => 2,
-    OPT_NORMALIZE  => 4,
-    OPT_SMART      => 8,
+    OPT_DEFAULT       =>  0,
+    OPT_SOURCEPOS     =>  1,
+    OPT_HARDBREAKS    =>  2,
+    OPT_NORMALIZE     =>  4,
+    OPT_SMART         =>  8,
+    OPT_VALIDATE_UTF8 => 16,
+    OPT_SAFE          => 32,
 };
 
 sub parse {

@@ -38,10 +38,11 @@ the node.
 
 =head2 Rendering
 
-    my $html = $node->render_html( [$options] )
-    my $xml  = $node->render_xml( [$options] )
-    my $man  = $node->render_man( [$options] )
-    my $md   = $node->render_commonmark( [$options], [$width] )
+    my $html  = $node->render_html( [$options] )
+    my $xml   = $node->render_xml( [$options] )
+    my $man   = $node->render_man( [$options], [$width] )
+    my $md    = $node->render_commonmark( [$options], [$width] )
+    my $latex = $node->render_latex( [$options], [$width] )
 
 These methods render the contents of the node in the respective format and
 return an B<encoded> UTF-8 byte string. This is useful when passing the
@@ -50,10 +51,13 @@ you should consider decoding the byte string using C<utf8::decode>.
 
 C<$options> is a bit field created by ORing the following constants:
 
-    CommonMark::OPT_DEFAULT    => 0
-    CommonMark::OPT_SOURCEPOS  => 1
-    CommonMark::OPT_HARDBREAKS => 2
-    CommonMark::OPT_NORMALIZE  => 4
+    CommonMark::OPT_DEFAULT       =>  0
+    CommonMark::OPT_SOURCEPOS     =>  1
+    CommonMark::OPT_HARDBREAKS    =>  2
+    CommonMark::OPT_NORMALIZE     =>  4
+    CommonMark::OPT_SMART         =>  8
+    CommonMark::OPT_VALIDATE_UTF8 => 16
+    CommonMark::OPT_SAFE          => 32
 
 C<$options> may be omitted and defaults to C<OPT_DEFAULT>. See the
 documentation of I<libcmark> for more details.
