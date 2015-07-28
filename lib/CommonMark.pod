@@ -6,6 +6,11 @@ CommonMark - Interface to the CommonMark C library
 
     use CommonMark;
 
+    my $doc = CommonMark->parse(
+        file  => $file,
+        smart => 1,
+    );
+
     my $html = CommonMark->markdown_to_html($markdown);
     my $doc  = CommonMark->parse_file($file);
     my $doc  = CommonMark->parse_document($markdown);
@@ -37,23 +42,25 @@ Equivalent to
 
     my $doc = CommonMark->parse(
         string        => $string,
-        normalize     => $normalize,      # Optional
-        smart         => $smart,          # Optional
-        validate_utf8 => $validate_utf8,  # Optional
+        normalize     => $bool,    # Optional
+        smart         => $bool,    # Optional
+        validate_utf8 => $bool,    # Optional
     );
 
     my $doc = CommonMark->parse(
-        file          => $file,
-        normalize     => $normalize,      # Optional
-        smart         => $smart,          # Optional
-        validate_utf8 => $validate_utf8,  # Optional
+        file          => $handle,
+        normalize     => $bool,    # Optional
+        smart         => $bool,    # Optional
+        validate_utf8 => $bool,    # Optional
     );
 
 Convenience function to parse documents. Exactly one of the C<string> or
 C<file> options must be provided. When given a string, calls
-C<parse_document>. When given a file, calls C<parse_file>. C<normalize>,
+L</parse_document>. When given a file, calls L</parse_file>. C<normalize>,
 C<smart>, and C<validate_utf8> enable the respective
 L<parser options|/"Parser options">.
+
+Returns the L<CommonMark::Node> of the root document.
 
 =head2 parse_document
 
@@ -84,8 +91,8 @@ C<OPT_NORMALIZE> makes sure that adjacent text nodes are merged in the parse
 tree.
 
 C<OPT_SMART> enables the "smart quote" features which turns vertical into
-typographic quotation marks, double hyphens into en dashes, and triple
-hyphens into em dashes.
+typographic quotation marks, double and triple hyphens into en and em dashes,
+and triple periods into ellipses.
 
 C<OPT_VALIDATE_UTF8> turns on UTF-8 validation. Normally, this isn't
 necessary because Perl should always provide proper UTF-8. The option may

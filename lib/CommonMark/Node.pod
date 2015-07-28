@@ -4,6 +4,11 @@ CommonMark::Node - Node of the CommonMark parse tree
 
 =head1 SYNOPSIS
 
+    my $html = $node->render(
+        format => 'html',
+        safe   => 1,
+    );
+
     my $header    = $doc->first_child;
     my $level     = $header->get_header_level;
     my $paragraph = $header->next;
@@ -27,16 +32,17 @@ C<CommonMark::Node> represents a node of the parse tree.
    my $node = CommonMark::Node->new($type);
 
 Creates a new node of type C<$type>. See L</"Node types"> for a list of
-types.
+types. Note that the L<node creation functions|CommonMark/"Node creation">
+provide a more powerful interface.
 
-=head2 render
+=head2 Rendering
 
     my $result = $node->render(
-        format        => $format,
-        sourcepos     => $sourcepos,   # Optional
-        hardbreaks    => $hardbreaks,  # Optional
-        safe          => $safe,        # Optional
-        width         => $width,       # Optional
+        format        => $string,
+        sourcepos     => $bool,    # Optional
+        hardbreaks    => $bool,    # Optional
+        safe          => $bool,    # Optional
+        width         => $int,     # Optional
     );
 
 Convenience function to render documents. Supported formats are C<'html'>,
@@ -46,15 +52,6 @@ C<sourcepos>, C<hardbreaks>, and C<safe> enable the respective
 L<render options|/"Rendering">.
 
 C<width> is passed to renderers that support it.
-
-=head2 iterator
-
-    my $iterator = $node->iterator;
-
-Creates a new L<CommonMark::Iterator> to walk through the descendants of
-the node.
-
-=head2 Rendering
 
     my $html  = $node->render_html( [$options] )
     my $xml   = $node->render_xml( [$options] )
@@ -128,6 +125,11 @@ See L</"Constants"> for a list of constants used for node types, list
 types, and list delimiters.
 
 =head2 Tree traversal
+
+    my $iterator = $node->iterator;
+
+Creates a new L<CommonMark::Iterator> to walk through the descendants of
+the node.
 
     my $next   = $node->next;
     my $prev   = $node->previous;
