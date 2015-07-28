@@ -1,5 +1,13 @@
 Revision history for Perl module CommonMark
 
+0.210001  2015-07-28
+    - Stop returning encoded UTF-8 from renderers
+      BREAKING CHANGE: The renderers now return normal Perl strings.
+      Use utf8::encode before printing the result to binary streams.
+    - $node->render convenience method
+    - Additional parser options for CommonMark->parse
+    - Fix and improve check for libcmark
+
 0.210000  2015-07-27
     - Require libcmark 0.21.0
     - Adjust for libcmark API changes

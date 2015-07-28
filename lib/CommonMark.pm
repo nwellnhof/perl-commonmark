@@ -4,7 +4,7 @@ use warnings;
 
 use XSLoader;
 
-our $VERSION = '0.210000';
+our $VERSION = '0.210001';
 XSLoader::load('CommonMark', $VERSION);
 
 package CommonMark;
