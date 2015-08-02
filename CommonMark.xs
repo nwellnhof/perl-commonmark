@@ -5,9 +5,9 @@
  *   user data slot of `struct cmark_node`, so there's a 1:1 mapping
  *   between Perl and C objects.
  * - Every node SV keeps a reference to the parent SV. This is done
- *   indirectly by looking up the parent SV and increasing its refcount.
+ *   by looking up the parent SV via user data and increasing its refcount.
  * - This makes sure that a document isn't freed if the last reference
- *   from Perl to the root node is dropped, as references to child nodes
+ *   from Perl to the root node is dropped, while references to child nodes
  *   might still exist.
  * - As a consequence, as long as a node is referenced from Perl, all its
  *   ancestor nodes will also be associated with a Perl object.
@@ -119,6 +119,11 @@ S_node2sv(pTHX_ cmark_node *node) {
 static void
 S_transfer_refcount(pTHX_ cmark_node *from, cmark_node *to) {
     if (from != to) {
+        /*
+         * It is important to incref first, then decref. Otherwise, node SVs
+         * of ancestors could be needlessly destroyed and recreated when
+         * transferring a sole reference to a nearby node.
+         */
         S_create_or_incref_node_sv(aTHX_ to);
         S_decref_node_sv(aTHX_ from);
     }
