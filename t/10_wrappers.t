@@ -39,20 +39,26 @@ EOF
     my $all_opts = CommonMark::_extract_opts({
         sourcepos     => 1,
         hardbreaks    => 'yes',
-        normalize     => '0e0',
-        smart         => 'true',
-        validate_utf8 => '1',
         safe          => 100,
+        normalize     => '0e0',
+        validate_utf8 => '1',
+        smart         => 'true',
     });
-    is($all_opts, 63, 'extracting options works');
+    my $expected = CommonMark::OPT_SOURCEPOS
+                 | CommonMark::OPT_HARDBREAKS
+                 | CommonMark::OPT_SAFE
+                 | CommonMark::OPT_NORMALIZE
+                 | CommonMark::OPT_VALIDATE_UTF8
+                 | CommonMark::OPT_SMART;
+    is($all_opts, $expected, 'extracting options works');
 
     my $no_opts = CommonMark::_extract_opts({
         sourcepos     => undef,
         hardbreaks    => 0,
-        normalize     => 0e100,
-        smart         => '',
-        validate_utf8 => '0',
         safe          => -0.0,
+        normalize     => 0e100,
+        validate_utf8 => '0',
+        smart         => '',
     });
     is($no_opts, 0, 'extracting unset options works');
 }

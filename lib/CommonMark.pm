@@ -50,22 +50,22 @@ use constant {
     EVENT_ENTER => 2,
     EVENT_EXIT  => 3,
 
-    OPT_DEFAULT       =>  0,
-    OPT_SOURCEPOS     =>  1,
-    OPT_HARDBREAKS    =>  2,
-    OPT_NORMALIZE     =>  4,
-    OPT_SMART         =>  8,
-    OPT_VALIDATE_UTF8 => 16,
-    OPT_SAFE          => 32,
+    OPT_DEFAULT       => 0,
+    OPT_SOURCEPOS     => 1 <<  1,
+    OPT_HARDBREAKS    => 1 <<  2,
+    OPT_SAFE          => 1 <<  3,
+    OPT_NORMALIZE     => 1 <<  8,
+    OPT_VALIDATE_UTF8 => 1 <<  9,
+    OPT_SMART         => 1 << 10,
 };
 
 my @option_map = (
-    sourcepos     =>  1,
-    hardbreaks    =>  2,
-    normalize     =>  4,
-    smart         =>  8,
-    validate_utf8 => 16,
-    safe          => 32,
+    sourcepos     => OPT_SOURCEPOS,
+    hardbreaks    => OPT_HARDBREAKS,
+    safe          => OPT_SAFE,
+    normalize     => OPT_NORMALIZE,
+    validate_utf8 => OPT_VALIDATE_UTF8,
+    smart         => OPT_SMART,
 );
 
 sub parse {

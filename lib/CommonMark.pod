@@ -83,9 +83,9 @@ containing the parser options. It defaults to C<OPT_DEFAULT>.
 The parser options are a bit field created by ORing the following constants:
 
     CommonMark::OPT_DEFAULT       => 0
-    CommonMark::OPT_NORMALIZE     => 4
-    CommonMark::OPT_SMART         => 8
-    CommonMark::OPT_VALIDATE_UTF8 => 16,
+    CommonMark::OPT_NORMALIZE     => 1 <<  8,
+    CommonMark::OPT_VALIDATE_UTF8 => 1 <<  9,
+    CommonMark::OPT_SMART         => 1 << 10,
 
 C<OPT_NORMALIZE> makes sure that adjacent text nodes are merged in the parse
 tree.

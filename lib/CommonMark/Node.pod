@@ -63,10 +63,10 @@ These methods render the contents of the node in the respective format.
 
 C<$options> is a bit field created by ORing the following constants:
 
-    CommonMark::OPT_DEFAULT       =>  0
-    CommonMark::OPT_SOURCEPOS     =>  1
-    CommonMark::OPT_HARDBREAKS    =>  2
-    CommonMark::OPT_SAFE          => 32
+    CommonMark::OPT_DEFAULT    => 0
+    CommonMark::OPT_SOURCEPOS  => 1 << 1
+    CommonMark::OPT_HARDBREAKS => 1 << 2
+    CommonMark::OPT_SAFE       => 1 << 3
 
 C<$options> may be omitted and defaults to C<OPT_DEFAULT>. See the
 documentation of I<libcmark> for more details.
