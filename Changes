@@ -1,5 +1,8 @@
 Revision history for Perl module CommonMark
 
+0.230000
+    - Support and require libcmark 0.23
+
 0.210001  2015-07-28
     - Stop returning encoded UTF-8 from renderers
       BREAKING CHANGE: The renderers now return normal Perl strings.
