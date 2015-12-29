@@ -17,7 +17,7 @@ isa_ok($doc, 'CommonMark::Node', 'parse_file');
 
 my $header = $doc->first_child;
 is($header->get_type, CommonMark::NODE_HEADER, 'get_type');
-is($header->get_type_string, 'header', 'get_type_string');
+is($header->get_type_string, 'heading', 'get_type_string');
 is($header->get_header_level, 1, 'get_header_level');
 $header->set_header_level(6);
 is($header->get_header_level, 6, 'set_header_level works');
