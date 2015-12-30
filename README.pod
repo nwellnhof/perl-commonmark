@@ -13,12 +13,12 @@ library.
 =head2 Installation of libcmark
 
 Please note that the I<libcmark> API isn't stable yet. This version of the
-Perl bindings is known to work with version
-L<0.23.0|https://github.com/jgm/cmark/releases/tag/0.23.0>. But
-there's no guarantee that it can be compiled with later versions.
+Perl bindings is targeted at I<libcmark>
+L<version 0.23.0|https://github.com/jgm/cmark/releases/tag/0.23.0>.
+It's known to work with 0.21.0, but there's no guarantee that it can be
+compiled with versions higher than 0.23.0.
 Also note that upgrading libcmark may require recompilation of the Perl
-module. For the time being, the version of the Perl bindings is kept in sync
-with the lowest supported I<libcmark> version.
+module.
 
     curl -LJO https://github.com/jgm/cmark/archive/0.23.0.tar.gz
     tar xzf cmark-0.23.0.tar.gz
