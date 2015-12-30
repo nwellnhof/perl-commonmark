@@ -133,6 +133,12 @@ be used if you don't trust the safety of Perl's internal UTF-8 handling.
     my $html = CommonMark->create_html(
         literal => $html,
     );
+    my $custom_block = CommonMark->create_custom_block(
+        on_enter => $raw_prefix,
+        on_exit  => $raw_suffix,
+        children => \@children,
+        text     => $literal,
+    );
     my $hrule = CommonMark->create_hrule;
     my $emph = CommonMark->create_emph(
         children => \@children,
@@ -151,6 +157,12 @@ be used if you don't trust the safety of Perl's internal UTF-8 handling.
     my $image = CommonMark->create_image(
         url      => $url,
         title    => $title,
+        children => \@children,
+        text     => $literal,
+    );
+    my $custom_inline = CommonMark->create_custom_inline(
+        on_enter => $raw_prefix,
+        on_exit  => $raw_suffix,
         children => \@children,
         text     => $literal,
     );

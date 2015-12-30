@@ -2,7 +2,7 @@ use strict;
 use warnings;
 
 use Symbol;
-use Test::More tests => 2;
+use Test::More tests => 3;
 
 BEGIN {
     use_ok('CommonMark');
@@ -102,4 +102,36 @@ my $expected_html = <<EOF;
 <img src="/facepalm.jpg" alt="alt text" title="image title" /></p>
 EOF
 is($doc->render_html, $expected_html, 'create_* helpers');
+
+SKIP: {
+    skip('Requires libcmark 0.23', 1) if CommonMark->version < 0x001700;
+
+    $doc = CommonMark->create_document(
+        children => [
+            CommonMark->create_custom_block(
+                on_enter => '<div class="custom">',
+                on_exit  => '</div>',
+                children => [
+                    CommonMark->create_paragraph(
+                        children => [
+                            CommonMark->create_custom_inline(
+                                on_enter => '<span class="custom">',
+                                on_exit  => '</span>',
+                                text     => 'foo',
+                            ),
+                        ],
+                    ),
+                ],
+            ),
+        ],
+    );
+
+    $expected_html = <<EOF;
+<div class="custom">
+<p><span class="custom">foo</span></p>
+</div>
+EOF
+
+    is($doc->render_html, $expected_html, 'create_custom_* helpers');
+}
 

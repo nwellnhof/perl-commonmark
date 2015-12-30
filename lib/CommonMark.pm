@@ -178,6 +178,18 @@ sub create_image {
     return _add_link_opts($node, \%opts);
 }
 
+sub create_custom_block {
+    my (undef, %opts) = @_;
+    my $node = CommonMark::Node->new(NODE_CUSTOM_BLOCK);
+    return _add_custom_opts($node, \%opts);
+}
+
+sub create_custom_inline {
+    my (undef, %opts) = @_;
+    my $node = CommonMark::Node->new(NODE_CUSTOM_INLINE);
+    return _add_custom_opts($node, \%opts);
+}
+
 sub _add_children {
     my ($node, $opts) = @_;
 
@@ -228,6 +240,18 @@ sub _add_link_opts {
 
     $node->set_url($url)     if defined($url);
     $node->set_title($title) if defined($title);
+
+    return _add_children_or_text($node, $opts);
+}
+
+sub _add_custom_opts {
+    my ($node, $opts) = @_;
+
+    my $on_enter = $opts->{on_enter};
+    my $on_exit  = $opts->{on_exit};
+
+    $node->set_on_enter($on_enter) if defined($on_enter);
+    $node->set_on_exit($on_exit)   if defined($on_exit);
 
     return _add_children_or_text($node, $opts);
 }
