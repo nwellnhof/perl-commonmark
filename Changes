@@ -1,5 +1,9 @@
 Revision history for Perl module CommonMark
 
+0.230001  2015-12-30
+    - Define constants in XS code.
+      Should add backward compatibility for libcmark 0.21.
+
 0.230000  2015-12-29
     - Support and require libcmark 0.23
     - Improve and fix documentation
