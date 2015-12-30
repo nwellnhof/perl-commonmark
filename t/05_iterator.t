@@ -4,7 +4,7 @@ use warnings;
 use Test::More tests => 132;
 
 BEGIN {
-    use_ok('CommonMark');
+    use_ok('CommonMark', ':node', ':event');
 }
 
 my $md = <<EOF;
@@ -17,31 +17,31 @@ my $doc = CommonMark->parse_document($md);
 isa_ok($doc, 'CommonMark::Node', 'parse_document');
 
 my @expected_events = (
-    [ CommonMark::EVENT_ENTER, CommonMark::NODE_DOCUMENT  ],
-    [ CommonMark::EVENT_ENTER, CommonMark::NODE_LIST      ],
-    [ CommonMark::EVENT_ENTER, CommonMark::NODE_ITEM      ],
-    [ CommonMark::EVENT_ENTER, CommonMark::NODE_PARAGRAPH ],
-    [ CommonMark::EVENT_ENTER, CommonMark::NODE_TEXT      ],
-    [ CommonMark::EVENT_EXIT,  CommonMark::NODE_PARAGRAPH ],
-    [ CommonMark::EVENT_ENTER, CommonMark::NODE_LIST      ],
-    [ CommonMark::EVENT_ENTER, CommonMark::NODE_ITEM      ],
-    [ CommonMark::EVENT_ENTER, CommonMark::NODE_PARAGRAPH ],
-    [ CommonMark::EVENT_ENTER, CommonMark::NODE_EMPH      ],
-    [ CommonMark::EVENT_ENTER, CommonMark::NODE_STRONG    ],
-    [ CommonMark::EVENT_ENTER, CommonMark::NODE_TEXT      ],
-    [ CommonMark::EVENT_EXIT,  CommonMark::NODE_STRONG    ],
-    [ CommonMark::EVENT_EXIT,  CommonMark::NODE_EMPH      ],
-    [ CommonMark::EVENT_EXIT,  CommonMark::NODE_PARAGRAPH ],
-    [ CommonMark::EVENT_EXIT,  CommonMark::NODE_ITEM      ],
-    [ CommonMark::EVENT_EXIT,  CommonMark::NODE_LIST      ],
-    [ CommonMark::EVENT_EXIT,  CommonMark::NODE_ITEM      ],
-    [ CommonMark::EVENT_ENTER, CommonMark::NODE_ITEM      ],
-    [ CommonMark::EVENT_ENTER, CommonMark::NODE_PARAGRAPH ],
-    [ CommonMark::EVENT_ENTER, CommonMark::NODE_TEXT      ],
-    [ CommonMark::EVENT_EXIT,  CommonMark::NODE_PARAGRAPH ],
-    [ CommonMark::EVENT_EXIT,  CommonMark::NODE_ITEM      ],
-    [ CommonMark::EVENT_EXIT,  CommonMark::NODE_LIST      ],
-    [ CommonMark::EVENT_EXIT,  CommonMark::NODE_DOCUMENT  ],
+    [ EVENT_ENTER, NODE_DOCUMENT  ],
+    [ EVENT_ENTER, NODE_LIST      ],
+    [ EVENT_ENTER, NODE_ITEM      ],
+    [ EVENT_ENTER, NODE_PARAGRAPH ],
+    [ EVENT_ENTER, NODE_TEXT      ],
+    [ EVENT_EXIT,  NODE_PARAGRAPH ],
+    [ EVENT_ENTER, NODE_LIST      ],
+    [ EVENT_ENTER, NODE_ITEM      ],
+    [ EVENT_ENTER, NODE_PARAGRAPH ],
+    [ EVENT_ENTER, NODE_EMPH      ],
+    [ EVENT_ENTER, NODE_STRONG    ],
+    [ EVENT_ENTER, NODE_TEXT      ],
+    [ EVENT_EXIT,  NODE_STRONG    ],
+    [ EVENT_EXIT,  NODE_EMPH      ],
+    [ EVENT_EXIT,  NODE_PARAGRAPH ],
+    [ EVENT_EXIT,  NODE_ITEM      ],
+    [ EVENT_EXIT,  NODE_LIST      ],
+    [ EVENT_EXIT,  NODE_ITEM      ],
+    [ EVENT_ENTER, NODE_ITEM      ],
+    [ EVENT_ENTER, NODE_PARAGRAPH ],
+    [ EVENT_ENTER, NODE_TEXT      ],
+    [ EVENT_EXIT,  NODE_PARAGRAPH ],
+    [ EVENT_EXIT,  NODE_ITEM      ],
+    [ EVENT_EXIT,  NODE_LIST      ],
+    [ EVENT_EXIT,  NODE_DOCUMENT  ],
 );
 
 {
@@ -74,7 +74,7 @@ my @expected_events = (
     }
 
     my $ev_type = $iter->next;
-    is($ev_type, CommonMark::EVENT_DONE, 'iterator done, scalar context');
+    is($ev_type, EVENT_DONE, 'iterator done, scalar context');
 }
 
 {
@@ -90,7 +90,7 @@ my @expected_events = (
 
     $iter->next for 1..11;
     my $strong = $iter->get_node;
-    is($strong->get_type, CommonMark::NODE_STRONG, '11th node is strong');
+    is($strong->get_type, NODE_STRONG, '11th node is strong');
 
     $iter = undef;
     # Cause some allocations.

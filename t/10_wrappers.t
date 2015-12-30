@@ -4,7 +4,7 @@ use warnings;
 use Test::More tests => 6;
 
 BEGIN {
-    use_ok('CommonMark');
+    use_ok('CommonMark', ':opt');
 }
 
 {
@@ -44,12 +44,12 @@ EOF
         validate_utf8 => '1',
         smart         => 'true',
     });
-    my $expected = CommonMark::OPT_SOURCEPOS
-                 | CommonMark::OPT_HARDBREAKS
-                 | CommonMark::OPT_SAFE
-                 | CommonMark::OPT_NORMALIZE
-                 | CommonMark::OPT_VALIDATE_UTF8
-                 | CommonMark::OPT_SMART;
+    my $expected = OPT_SOURCEPOS
+                 | OPT_HARDBREAKS
+                 | OPT_SAFE
+                 | OPT_NORMALIZE
+                 | OPT_VALIDATE_UTF8
+                 | OPT_SMART;
     is($all_opts, $expected, 'extracting options works');
 
     my $no_opts = CommonMark::_extract_opts({

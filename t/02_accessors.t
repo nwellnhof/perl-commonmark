@@ -4,7 +4,7 @@ use warnings;
 use Test::More tests => 28;
 
 BEGIN {
-    use_ok('CommonMark');
+    use_ok('CommonMark', ':all');
 }
 
 my $filename = 't/files/test.md';
@@ -16,7 +16,7 @@ close($file);
 isa_ok($doc, 'CommonMark::Node', 'parse_file');
 
 my $header = $doc->first_child;
-is($header->get_type, CommonMark::NODE_HEADER, 'get_type');
+is($header->get_type, NODE_HEADER, 'get_type');
 like($header->get_type_string, qr/^head(er|ing)\z/, 'get_type_string');
 is($header->get_header_level, 1, 'get_header_level');
 $header->set_header_level(6);
@@ -29,9 +29,9 @@ is($text->get_literal, "New \x{263A} header", 'set_literal works');
 
 my $ol = $header->next;
 is($ol->get_list_tight, 1, 'get_list_tight');
-is($ol->get_list_delim, CommonMark::PAREN_DELIM, 'get_list_delim');
+is($ol->get_list_delim, PAREN_DELIM, 'get_list_delim');
 is($ol->get_list_start, 4, 'get_list_start');
-is($ol->get_list_type, CommonMark::ORDERED_LIST, 'get_list_type');
+is($ol->get_list_type, ORDERED_LIST, 'get_list_type');
 $ol->set_list_tight(0);
 is($ol->get_list_tight, 0, 'set_list_tight works');
 $ol->set_list_delim(1);
@@ -63,7 +63,7 @@ is($link->get_title, 'new title', 'set_title works');
 SKIP: {
     skip('Requires libcmark 0.23', 2) if CommonMark->version < 0x001700;
 
-    my $custom = CommonMark::Node->new(CommonMark::NODE_CUSTOM_INLINE);
+    my $custom = CommonMark::Node->new(NODE_CUSTOM_INLINE);
     $custom->set_on_enter('prefix');
     is($custom->get_on_enter, 'prefix', 'get/set on_enter');
     $custom->set_on_exit('suffix');

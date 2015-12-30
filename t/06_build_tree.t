@@ -5,20 +5,20 @@ use Symbol;
 use Test::More tests => 2;
 
 BEGIN {
-    use_ok('CommonMark');
+    use_ok('CommonMark', ':node');
 }
 
 sub create_text {
     my $literal = shift;
-    my $node = CommonMark::Node->new(CommonMark::NODE_TEXT);
+    my $node = CommonMark::Node->new(NODE_TEXT);
     $node->set_literal($literal);
     return $node;
 }
 
-my $doc         = CommonMark::Node->new(CommonMark::NODE_DOCUMENT);
-my $paragraph   = CommonMark::Node->new(CommonMark::NODE_PARAGRAPH);
-my $emph        = CommonMark::Node->new(CommonMark::NODE_EMPH);
-my $strong      = CommonMark::Node->new(CommonMark::NODE_STRONG);
+my $doc         = CommonMark::Node->new(NODE_DOCUMENT);
+my $paragraph   = CommonMark::Node->new(NODE_PARAGRAPH);
+my $emph        = CommonMark::Node->new(NODE_EMPH);
+my $strong      = CommonMark::Node->new(NODE_STRONG);
 my $normal_text = create_text('normal ');
 my $emph_text   = create_text('emph');
 my $space       = create_text(' ');

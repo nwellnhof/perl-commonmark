@@ -5,7 +5,7 @@ use Symbol;
 use Test::More tests => 3;
 
 BEGIN {
-    use_ok('CommonMark');
+    use_ok('CommonMark', ':list', ':delim');
 }
 
 my $doc = CommonMark->create_document(
@@ -26,8 +26,8 @@ my $doc = CommonMark->create_document(
             ],
         ),
         CommonMark->create_list(
-            type     => CommonMark::ORDERED_LIST,
-            delim    => CommonMark::PAREN_DELIM,
+            type     => ORDERED_LIST,
+            delim    => PAREN_DELIM,
             start    => 2,
             tight    => 1,
             children => [

@@ -4,7 +4,7 @@ use warnings;
 use Test::More tests => 10;
 
 BEGIN {
-    use_ok('CommonMark');
+    use_ok('CommonMark', 'OPT_DEFAULT');
 }
 
 my $md = <<EOF;
@@ -29,7 +29,7 @@ like($doc->render_xml, qr/^<\?xml /, 'render_xml');
 like($doc->render_man, qr/^\.SH\n/, 'render_man');
 like($doc->render_latex, qr/^\\section\{Header\}/, 'render_latex');
 
-my $rendered_md = $doc->render_commonmark(CommonMark::OPT_DEFAULT, 20);
+my $rendered_md = $doc->render_commonmark(OPT_DEFAULT, 20);
 my $expected_md = <<'EOF';
 # Header
 

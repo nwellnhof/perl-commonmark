@@ -7,7 +7,7 @@ use Test::More HAS_LEAKTRACE ?
     (skip_all => 'require Test::LeakTrace');
 use Test::LeakTrace;
 
-use CommonMark;
+use CommonMark qw(:node :event);
 
 my $md = <<EOF;
 normal, *emph*, **strong**
@@ -23,7 +23,7 @@ sub tree_manip {
 
     $doc = undef;
 
-    my $result = CommonMark::Node->new(CommonMark::NODE_DOCUMENT);
+    my $result = CommonMark::Node->new(NODE_DOCUMENT);
     $text->unlink;
     $strong->unlink;
     $result->append_child($paragraph);
@@ -45,7 +45,7 @@ sub iterate_scalar_context {
     my $doc  = CommonMark->parse_document($md);
     my $iter = $doc->iterator;
     my $sum  = 0;
-    while ((my $ev_type = $iter->next) != CommonMark::EVENT_DONE) {
+    while ((my $ev_type = $iter->next) != EVENT_DONE) {
         $sum += $ev_type;
     }
     return $sum;

@@ -5,7 +5,7 @@ use Symbol;
 use Test::More tests => 4;
 
 BEGIN {
-    use_ok('CommonMark');
+    use_ok('CommonMark', ':node');
 }
 
 my $md = <<EOF;
@@ -22,7 +22,7 @@ my $space     = $strong->first_child->parent->previous;
 my $expected_html = $doc->render_html;
 $doc = undef;
 
-my $result = CommonMark::Node->new(CommonMark::NODE_DOCUMENT);
+my $result = CommonMark::Node->new(NODE_DOCUMENT);
 $text->unlink;
 $strong->unlink;
 $result->append_child($paragraph);
