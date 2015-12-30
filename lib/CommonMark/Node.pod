@@ -111,11 +111,15 @@ A value of 0 disables line wrapping. The default is 0.
     my $string = $node->get_title;
     my $string = $node->get_url;
     my $string = $node->get_fence_info;
+    my $string = $node->get_on_enter;
+    my $string = $node->get_on_exit;
 
     $node->set_literal($string);
     $node->set_title($string);
     $node->set_url($string);
     $node->set_fence_info($string);
+    $node->set_on_enter($string);
+    $node->set_on_exit($string);
 
 Various accessors to get and set integer and string values of a node. Not
 all values are supported by every type of node. Getters return C<0> or

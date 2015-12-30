@@ -37,6 +37,32 @@
 #define cmark_node_render_commonmark  cmark_render_commonmark
 #define cmark_node_render_latex       cmark_render_latex
 
+/* Backward compatibility */
+
+#if CMARK_VERSION < 0x001700
+
+    /* Older than 0.23.0 */
+
+    static const char*
+    S_unsupported_get_utf8(cmark_node *node) {
+        (void)node;
+        return NULL;
+    }
+
+    static const char*
+    S_unsupported_set_utf8(cmark_node *node, const char *val) {
+        (void)node;
+        (void)val;
+        return 0;
+    }
+
+    #define cmark_node_get_on_enter  S_unsupported_get_utf8
+    #define cmark_node_get_on_exit   S_unsupported_get_utf8
+    #define cmark_node_set_on_enter  S_unsupported_set_utf8
+    #define cmark_node_set_on_exit   S_unsupported_set_utf8
+
+#endif /* CMARK_VERSION < 0x001700 */
+
 static SV*
 S_create_or_incref_node_sv(pTHX_ cmark_node *node) {
     SV *new_obj = NULL;
@@ -384,6 +410,8 @@ INTERFACE:
     cmark_node_get_title
     cmark_node_get_url
     cmark_node_get_fence_info
+    cmark_node_get_on_enter
+    cmark_node_get_on_exit
 
 NO_OUTPUT int
 interface_set_utf8(cmark_node *node, const char *value)
@@ -392,6 +420,8 @@ INTERFACE:
     cmark_node_set_title
     cmark_node_set_url
     cmark_node_set_fence_info
+    cmark_node_set_on_enter
+    cmark_node_set_on_exit
 POSTCALL:
     if (!RETVAL) {
         croak("%s: invalid operation", GvNAME(CvGV(cv)));

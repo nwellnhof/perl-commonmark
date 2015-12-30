@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 26;
+use Test::More tests => 28;
 
 BEGIN {
     use_ok('CommonMark');
@@ -59,4 +59,14 @@ $link->set_url('https://example.com/');
 is($link->get_url, 'https://example.com/', 'set_url works');
 $link->set_title('new title');
 is($link->get_title, 'new title', 'set_title works');
+
+SKIP: {
+    skip('Requires libcmark 0.23', 2) if CommonMark->version < 0x001700;
+
+    my $custom = CommonMark::Node->new(CommonMark::NODE_CUSTOM_INLINE);
+    $custom->set_on_enter('prefix');
+    is($custom->get_on_enter, 'prefix', 'get/set on_enter');
+    $custom->set_on_exit('suffix');
+    is($custom->get_on_exit, 'suffix', 'get/set on_exit');
+}
 
