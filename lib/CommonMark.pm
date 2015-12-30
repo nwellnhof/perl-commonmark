@@ -11,6 +11,67 @@ BEGIN {
 
 package CommonMark;
 
+use Exporter 'import';
+our %EXPORT_TAGS = (
+    opt => [ qw(
+        OPT_DEFAULT
+        OPT_SOURCEPOS
+        OPT_HARDBREAKS
+        OPT_SAFE
+        OPT_NORMALIZE
+        OPT_VALIDATE_UTF8
+        OPT_SMART
+    ) ],
+    node => [ qw(
+        NODE_NONE
+        NODE_DOCUMENT
+        NODE_BLOCK_QUOTE
+        NODE_LIST
+        NODE_ITEM
+        NODE_CODE_BLOCK
+        NODE_HTML
+        NODE_PARAGRAPH
+        NODE_HEADER
+        NODE_HRULE
+        NODE_TEXT
+        NODE_SOFTBREAK
+        NODE_LINEBREAK
+        NODE_CODE
+        NODE_INLINE_HTML
+        NODE_EMPH
+        NODE_STRONG
+        NODE_LINK
+        NODE_IMAGE
+    ),
+    # libcmark 0.23
+    qw(
+        NODE_CUSTOM_BLOCK
+        NODE_CUSTOM_INLINE
+        NODE_HTML_BLOCK
+        NODE_HEADING
+        NODE_THEMATIC_BREAK
+        NODE_HTML_INLINE
+    ) ],
+    list => [ qw(
+        NO_LIST
+        BULLET_LIST
+        ORDERED_LIST
+    ) ],
+    delim => [ qw(
+        NO_DELIM
+        PERIOD_DELIM
+        PAREN_DELIM
+    ) ],
+    event => [ qw(
+        EVENT_NONE
+        EVENT_DONE
+        EVENT_ENTER
+        EVENT_EXIT
+    ) ],
+);
+Exporter::export_ok_tags();
+push(@{ $EXPORT_TAGS{all} }, @{ $EXPORT_TAGS{$_} }) for keys %EXPORT_TAGS;
+
 my @option_map = (
     sourcepos     => OPT_SOURCEPOS,
     hardbreaks    => OPT_HARDBREAKS,

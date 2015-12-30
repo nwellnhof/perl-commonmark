@@ -4,20 +4,22 @@ CommonMark::Iterator - Iterate CommonMark nodes
 
 =head1 SYNOPSIS
 
+    use CommonMark qw(:node :event);
+
     my $iter = $doc->iterator;
 
     while (my ($ev_type, $node) = $iter->next) {
         my $node_type = $node->get_type;
 
-        if ($node_type == CommonMark::NODE_PARAGRAPH) {
-            if ($ev_type == CommonMark::EVENT_ENTER) {
+        if ($node_type == NODE_PARAGRAPH) {
+            if ($ev_type == EVENT_ENTER) {
                 print("<p>");
             }
             else {
                 print("</p>\n");
             }
         }
-        elsif ($node_type == CommonMark::NODE_TEXT) {
+        elsif ($node_type == NODE_TEXT) {
             print($node->get_literal);
         }
     }
@@ -49,6 +51,10 @@ Event types are:
     CommonMark::EVENT_DONE
     CommonMark::EVENT_ENTER
     CommonMark::EVENT_EXIT
+
+Event types can be imported from L<CommonMark> with tag C<event>.
+
+    use CommonMark qw(:event);
 
 The iterator starts by visiting the root node. Every visited node C<V>
 generates the following sequence of events.

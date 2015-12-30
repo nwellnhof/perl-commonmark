@@ -88,6 +88,10 @@ The parser options are a bit field created by ORing the following constants:
     CommonMark::OPT_VALIDATE_UTF8
     CommonMark::OPT_SMART
 
+Parser options can be imported from L<CommonMark> with tag C<opt>.
+
+    use CommonMark qw(:opt);
+
 C<OPT_NORMALIZE> makes sure that adjacent text nodes are merged in the parse
 tree.
 

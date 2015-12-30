@@ -68,6 +68,10 @@ C<$options> is a bit field created by ORing the following constants:
     CommonMark::OPT_HARDBREAKS
     CommonMark::OPT_SAFE
 
+Render options can be imported from L<CommonMark> with tag C<opt>.
+
+    use CommonMark qw(:opt);
+
 C<$options> may be omitted and defaults to C<OPT_DEFAULT>. See the
 documentation of I<libcmark> for more details.
 
@@ -187,17 +191,29 @@ These methods may die on failure.
     CommonMark::NODE_LINK
     CommonMark::NODE_IMAGE
 
+Node types can be imported from L<CommonMark> with tag C<node>.
+
+    use CommonMark qw(:node);
+
 =head3 List types
 
     CommonMark::NO_LIST => 0
     CommonMark::BULLET_LIST
     CommonMark::ORDERED_LIST
 
+List types can be imported from L<CommonMark> with tag C<list>.
+
+    use CommonMark qw(:list);
+
 =head3 Delimiter types for ordered lists
 
     CommonMark::NO_DELIM => 0
     CommonMark::PERIOD_DELIM
     CommonMark::PAREN_DELIM
+
+Delimiter types can be imported from L<CommonMark> with tag C<delim>.
+
+    use CommonMark qw(:delim);
 
 =head1 COPYRIGHT
 
