@@ -4,60 +4,12 @@ use warnings;
 
 use XSLoader;
 
-our $VERSION = '0.230000';
-XSLoader::load('CommonMark', $VERSION);
+BEGIN {
+    our $VERSION = '0.230000';
+    XSLoader::load('CommonMark', $VERSION);
+}
 
 package CommonMark;
-
-use constant {
-    NODE_NONE           =>  0,
-    NODE_DOCUMENT       =>  1,
-    NODE_BLOCK_QUOTE    =>  2,
-    NODE_LIST           =>  3,
-    NODE_ITEM           =>  4,
-    NODE_CODE_BLOCK     =>  5,
-    NODE_HTML_BLOCK     =>  6,
-    NODE_CUSTOM_BLOCK   =>  7,
-    NODE_PARAGRAPH      =>  8,
-    NODE_HEADING        =>  9,
-    NODE_THEMATIC_BREAK => 10,
-    NODE_TEXT           => 11,
-    NODE_SOFTBREAK      => 12,
-    NODE_LINEBREAK      => 13,
-    NODE_CODE           => 14,
-    NODE_HTML_INLINE    => 15,
-    NODE_CUSTOM_INLINE  => 16,
-    NODE_EMPH           => 17,
-    NODE_STRONG         => 18,
-    NODE_LINK           => 19,
-    NODE_IMAGE          => 20,
-    # For compatibility
-    NODE_HTML           =>  6,
-    NODE_HEADER         =>  9,
-    NODE_HRULE          => 10,
-    NODE_INLINE_HTML    => 15,
-
-    NO_LIST      => 0,
-    BULLET_LIST  => 1,
-    ORDERED_LIST => 2,
-
-    NO_DELIM     => 0,
-    PERIOD_DELIM => 1,
-    PAREN_DELIM  => 2,
-
-    EVENT_NONE  => 0,
-    EVENT_DONE  => 1,
-    EVENT_ENTER => 2,
-    EVENT_EXIT  => 3,
-
-    OPT_DEFAULT       => 0,
-    OPT_SOURCEPOS     => 1 <<  1,
-    OPT_HARDBREAKS    => 1 <<  2,
-    OPT_SAFE          => 1 <<  3,
-    OPT_NORMALIZE     => 1 <<  8,
-    OPT_VALIDATE_UTF8 => 1 <<  9,
-    OPT_SMART         => 1 << 10,
-};
 
 my @option_map = (
     sourcepos     => OPT_SOURCEPOS,

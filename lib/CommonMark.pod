@@ -32,7 +32,8 @@ interface.
     my $html = CommonMark->markdown_to_html( $markdown, [$options] );
 
 Converts a Markdown string to HTML. C<$options> is a bit field
-containing the parser and render options. It defaults to C<OPT_DEFAULT>.
+containing the parser and render options. It defaults to zero
+(C<OPT_DEFAULT>).
 
 Equivalent to
 
@@ -68,7 +69,7 @@ Returns the L<CommonMark::Node> of the root document.
 
 Parses a CommonMark document from a string returning the L<CommonMark::Node>
 of the document root. C<$options> is a bit field containing the parser
-options. It defaults to C<OPT_DEFAULT>.
+options. It defaults to zero (C<OPT_DEFAULT>).
 
 =head2 parse_file
 
@@ -76,16 +77,16 @@ options. It defaults to C<OPT_DEFAULT>.
 
 Parses a CommonMark document from a file handle returning the
 L<CommonMark::Node> of the document root. C<$options> is a bit field
-containing the parser options. It defaults to C<OPT_DEFAULT>.
+containing the parser options. It defaults to zero (C<OPT_DEFAULT>).
 
 =head2 Parser options
 
 The parser options are a bit field created by ORing the following constants:
 
-    CommonMark::OPT_DEFAULT       => 0
-    CommonMark::OPT_NORMALIZE     => 1 <<  8,
-    CommonMark::OPT_VALIDATE_UTF8 => 1 <<  9,
-    CommonMark::OPT_SMART         => 1 << 10,
+    CommonMark::OPT_DEFAULT => 0
+    CommonMark::OPT_NORMALIZE
+    CommonMark::OPT_VALIDATE_UTF8
+    CommonMark::OPT_SMART
 
 C<OPT_NORMALIZE> makes sure that adjacent text nodes are merged in the parse
 tree.

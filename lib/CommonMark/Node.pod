@@ -63,10 +63,10 @@ These methods render the contents of the node in the respective format.
 
 C<$options> is a bit field created by ORing the following constants:
 
-    CommonMark::OPT_DEFAULT    => 0
-    CommonMark::OPT_SOURCEPOS  => 1 << 1
-    CommonMark::OPT_HARDBREAKS => 1 << 2
-    CommonMark::OPT_SAFE       => 1 << 3
+    CommonMark::OPT_DEFAULT => 0
+    CommonMark::OPT_SOURCEPOS
+    CommonMark::OPT_HARDBREAKS
+    CommonMark::OPT_SAFE
 
 C<$options> may be omitted and defaults to C<OPT_DEFAULT>. See the
 documentation of I<libcmark> for more details.
@@ -161,39 +161,39 @@ These methods may die on failure.
 
 =head3 Node types
 
-    CommonMark::NODE_NONE           =>  0
-    CommonMark::NODE_DOCUMENT       =>  1
-    CommonMark::NODE_BLOCK_QUOTE    =>  2
-    CommonMark::NODE_LIST           =>  3
-    CommonMark::NODE_ITEM           =>  4
-    CommonMark::NODE_CODE_BLOCK     =>  5
-    CommonMark::NODE_HTML_BLOCK     =>  6
-    CommonMark::NODE_CUSTOM_BLOCK   =>  7
-    CommonMark::NODE_PARAGRAPH      =>  8
-    CommonMark::NODE_HEADING        =>  9
-    CommonMark::NODE_THEMATIC_BREAK => 10
-    CommonMark::NODE_TEXT           => 11
-    CommonMark::NODE_SOFTBREAK      => 12
-    CommonMark::NODE_LINEBREAK      => 13
-    CommonMark::NODE_CODE           => 14
-    CommonMark::NODE_HTML_INLINE    => 15
-    CommonMark::NODE_CUSTOM_INLINE  => 16
-    CommonMark::NODE_EMPH           => 17
-    CommonMark::NODE_STRONG         => 18
-    CommonMark::NODE_LINK           => 19
-    CommonMark::NODE_IMAGE          => 20
+    CommonMark::NODE_NONE => 0
+    CommonMark::NODE_DOCUMENT
+    CommonMark::NODE_BLOCK_QUOTE
+    CommonMark::NODE_LIST
+    CommonMark::NODE_ITEM
+    CommonMark::NODE_CODE_BLOCK
+    CommonMark::NODE_HTML_BLOCK
+    CommonMark::NODE_CUSTOM_BLOCK
+    CommonMark::NODE_PARAGRAPH
+    CommonMark::NODE_HEADING
+    CommonMark::NODE_THEMATIC_BREAK
+    CommonMark::NODE_TEXT
+    CommonMark::NODE_SOFTBREAK
+    CommonMark::NODE_LINEBREAK
+    CommonMark::NODE_CODE
+    CommonMark::NODE_HTML_INLINE
+    CommonMark::NODE_CUSTOM_INLINE
+    CommonMark::NODE_EMPH
+    CommonMark::NODE_STRONG
+    CommonMark::NODE_LINK
+    CommonMark::NODE_IMAGE
 
 =head3 List types
 
-    CommonMark::NO_LIST      => 0
-    CommonMark::BULLET_LIST  => 1
-    CommonMark::ORDERED_LIST => 2
+    CommonMark::NO_LIST => 0
+    CommonMark::BULLET_LIST
+    CommonMark::ORDERED_LIST
 
 =head3 Delimiter types for ordered lists
 
-    CommonMark::NO_DELIM     => 0
-    CommonMark::PERIOD_DELIM => 1
-    CommonMark::PAREN_DELIM  => 2
+    CommonMark::NO_DELIM => 0
+    CommonMark::PERIOD_DELIM
+    CommonMark::PAREN_DELIM
 
 =head1 COPYRIGHT
 

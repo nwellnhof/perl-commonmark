@@ -46,9 +46,9 @@ type and the new current node.
 
 Event types are:
 
-    CommonMark::EVENT_DONE  => 1
-    CommonMark::EVENT_ENTER => 2
-    CommonMark::EVENT_EXIT  => 3
+    CommonMark::EVENT_DONE
+    CommonMark::EVENT_ENTER
+    CommonMark::EVENT_EXIT
 
 The iterator starts by visiting the root node. Every visited node C<V>
 generates the following sequence of events.
