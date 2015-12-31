@@ -162,11 +162,13 @@ sub create_code_block {
     return _add_literal($node, \%opts);
 }
 
-sub create_html {
+sub create_html_block {
     my (undef, %opts) = @_;
     my $node = CommonMark::Node->new(NODE_HTML);
     return _add_literal($node, \%opts);
 }
+
+sub create_html { &create_html_block; }
 
 sub create_paragraph {
     my (undef, %opts) = @_;
@@ -174,7 +176,7 @@ sub create_paragraph {
     return _add_children_or_text($node, \%opts);
 }
 
-sub create_header {
+sub create_heading {
     my (undef, %opts) = @_;
 
     my $node = CommonMark::Node->new(NODE_HEADER);
@@ -185,9 +187,13 @@ sub create_header {
     return _add_children_or_text($node, \%opts);
 }
 
-sub create_hrule {
+sub create_header { &create_heading; }
+
+sub create_thematic_break {
     return CommonMark::Node->new(NODE_HRULE);
 }
+
+sub create_hrule { &create_thematic_break; }
 
 sub create_text {
     my (undef, %opts) = @_;
@@ -209,11 +215,13 @@ sub create_code {
     return _add_literal($node, \%opts);
 }
 
-sub create_inline_html {
+sub create_html_inline {
     my (undef, %opts) = @_;
     my $node = CommonMark::Node->new(NODE_INLINE_HTML);
     return _add_literal($node, \%opts);
 }
+
+sub create_inline_html { &create_html_inline; }
 
 sub create_emph {
     my (undef, %opts) = @_;

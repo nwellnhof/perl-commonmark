@@ -108,7 +108,7 @@ be used if you don't trust the safety of Perl's internal UTF-8 handling.
     my $document = CommonMark->create_document(
         children => \@children,
     );
-    my $header = CommonMark->create_header(
+    my $header = CommonMark->create_heading(
         level    => $level,
         children => \@children,
         text     => $literal,
@@ -134,7 +134,7 @@ be used if you don't trust the safety of Perl's internal UTF-8 handling.
         fence_info => $fence_info,
         literal    => $literal,
     );
-    my $html = CommonMark->create_html(
+    my $html = CommonMark->create_html_block(
         literal => $html,
     );
     my $custom_block = CommonMark->create_custom_block(
@@ -143,7 +143,7 @@ be used if you don't trust the safety of Perl's internal UTF-8 handling.
         children => \@children,
         text     => $literal,
     );
-    my $hrule = CommonMark->create_hrule;
+    my $thematic_break = CommonMark->create_thematic_break;
     my $text = CommonMark->create_text(
         literal => $literal,
     );
