@@ -144,6 +144,15 @@ be used if you don't trust the safety of Perl's internal UTF-8 handling.
         text     => $literal,
     );
     my $hrule = CommonMark->create_hrule;
+    my $text = CommonMark->create_text(
+        literal => $literal,
+    );
+    my $code = CommonMark->create_code(
+        literal => $literal,
+    );
+    my $html_inline = CommonMark->create_html_inline(
+        literal => $literal,
+    );
     my $emph = CommonMark->create_emph(
         children => \@children,
         text     => $literal,
