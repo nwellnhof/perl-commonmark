@@ -436,6 +436,27 @@ INIT:
 POSTCALL:
     S_decref_node_sv(aTHX_ old_parent);
 
+void
+cmark_node_replace(cmark_node *node, cmark_node *other)
+PREINIT:
+    cmark_node *old_parent;
+    int         retval;
+CODE:
+    old_parent = cmark_node_parent(other);
+#if CMARK_VERSION < 0x001800
+    /* Older than 0.24.0 */
+    retval = cmark_node_insert_before(node, other);
+    if (retval) {
+        cmark_node_unlink(node);
+    }
+#else
+    retval = cmark_node_replace(node, other);
+#endif
+    if (!retval) {
+        croak("replace: invalid operation");
+    }
+    S_decref_node_sv(aTHX_ old_parent);
+
 NO_OUTPUT int
 interface_move_node(cmark_node *node, cmark_node *other)
 PREINIT:

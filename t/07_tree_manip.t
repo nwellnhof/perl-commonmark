@@ -2,13 +2,13 @@ use strict;
 use warnings;
 
 use Symbol;
-use Test::More tests => 4;
+use Test::More tests => 5;
 
 BEGIN {
     use_ok('CommonMark', ':node');
 }
 
-my $md = <<EOF;
+my $md = <<'EOF';
 normal, *emph*, **strong**
 EOF
 
@@ -40,4 +40,12 @@ for my $i (1..4) {
     $paragraph->last_child->insert_after($paragraph->first_child);
 }
 is($result->render_html, $expected_html, 'rotate left');
+
+$emph->replace($strong);
+$space->unlink;
+
+$expected_html = <<'EOF';
+<p>normal, <strong>strong</strong></p>
+EOF
+is($result->render_html, $expected_html, 'replace');
 

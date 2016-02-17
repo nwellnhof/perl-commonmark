@@ -29,6 +29,8 @@ sub tree_manip {
     $result->append_child($paragraph);
     $emph->insert_before($text);
     $space->insert_after($strong);
+    $emph->replace($strong);
+    $space->unlink;
 }
 
 sub iterate_list_context {
