@@ -2,7 +2,7 @@ use strict;
 use warnings;
 
 use Symbol;
-use Test::More tests => 3;
+use Test::More tests => 4;
 
 BEGIN {
     use_ok('CommonMark', ':list', ':delim');
@@ -48,8 +48,7 @@ my $doc = CommonMark->create_document(
             ],
         ),
         CommonMark->create_code_block(
-            fence_info => 'perl',
-            literal    => 'Code block',
+            literal => 'Code block',
         ),
         CommonMark->create_html(
             literal => '<div>html</html>',
@@ -85,7 +84,7 @@ my $doc = CommonMark->create_document(
     ],
 );
 
-my $expected_html = <<EOF;
+my $expected_html = <<'EOF';
 <h2>Header</h2>
 <blockquote>
 <p>Block quote</p>
@@ -126,10 +125,29 @@ SKIP: {
         ],
     );
 
-    $expected_html = <<EOF;
+    $expected_html = <<'EOF';
 <div class="custom">
 <p><span class="custom">foo</span></p>
 </div>
+EOF
+
+    is($doc->render_html, $expected_html, 'create_custom_* helpers');
+}
+
+SKIP: {
+    # libcmark's HTML renderer ignores fence_info before 0.24.0.
+    skip('Requires libcmark 0.24', 1) if CommonMark->version < 0x001800;
+
+    $doc = CommonMark->create_document(
+        children => [
+            CommonMark->create_code_block(
+                fence_info => 'perl',
+                literal    => 'my @a = qw(1 2 3);',
+            ),
+    ]);
+
+    $expected_html = <<'EOF';
+<pre><code class="language-perl">my @a = qw(1 2 3);</code></pre>
 EOF
 
     is($doc->render_html, $expected_html, 'create_custom_* helpers');
