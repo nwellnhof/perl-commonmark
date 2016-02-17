@@ -1,5 +1,15 @@
 Revision history for Perl module CommonMark
 
+0.240100  2015-02-17
+    - Support custom nodes (requires libcmark 0.23)
+    - Export constants
+    - Document more helper functions
+    - Use new node naming conventions for helpers (old names are still
+      supported).
+    - Fix tests under libcmark 0.24.0.
+      Thanks to A. Sinan Unur for the report.
+    - Implement $node->replace
+
 0.230002  2015-12-30
     - Fixes for libcmark 0.21.0
 
