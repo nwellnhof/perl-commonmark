@@ -172,6 +172,7 @@ MODULE = CommonMark  PACKAGE = CommonMark  PREFIX = cmark_
 PROTOTYPES: DISABLE
 
 BOOT:
+    { /* new scope to accommodate WinSDK 7.1 VC compiler */
     static const struct {
         const char *name;
         int value;
@@ -245,6 +246,7 @@ BOOT:
     for (i = 0; i < num_constants; i++) {
         newCONSTSUB(stash, constants[i].name, newSViv(constants[i].value));
     }
+    } /* accommodate WinSDK 7.1 VC compiler */
 
 char*
 cmark_markdown_to_html(package, string, options = 0)
