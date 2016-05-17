@@ -1,0 +1,31 @@
+environment:
+  CMARK_VERSION: 0.25.2
+
+install:
+  - path C:\projects\cmark\bin;C:\MinGW\bin;C:\Perl\site\bin;C:\Perl\bin;C:\Windows\System32;C:\Program Files\7-Zip;C:\Program Files (x86)\CMake\bin;C:\Program Files\AppVeyor\BuildAgent
+
+  # Install libcmark.
+  - if not exist C:\projects\sources mkdir C:\projects\sources
+  - cd C:\projects\sources
+  - appveyor DownloadFile https://github.com/jgm/cmark/archive/%CMARK_VERSION%.zip -FileName cmark.zip
+  - 7z x cmark.zip
+  - cd cmark-%CMARK_VERSION%
+  - mkdir build
+  - cd build
+  - cmake -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=C:\projects\cmark ..
+  - mingw32-make install
+
+  # Install Perl prereqs
+  - cd C:\projects\perl-commonmark
+  - ppm install dmake
+  - ppm install Devel-CheckLib
+
+build_script:
+  - perl Makefile.PL INC=-IC:\projects\cmark\include LIBS="-LC:\projects\cmark\lib -lcmark.dll"
+  - dmake
+
+test_script:
+  - dmake test
+
+clone_depth: 5
+
