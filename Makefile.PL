@@ -10,7 +10,7 @@ use ExtUtils::MakeMaker;
 
 use Devel::CheckLib;
 {
-local @ARGV;
+local @ARGV = @ARGV;
 unshift(@ARGV, ExtUtils::MakeMaker::_shellwords($ENV{PERL_MM_OPT} || ''))
 if $ExtUtils::MakeMaker::VERSION >= 6.73_08;
 check_lib(
