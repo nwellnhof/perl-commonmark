@@ -275,6 +275,9 @@ CODE:
     (void)package;
     buffer = SvPVutf8(string, len);
     RETVAL = cmark_parse_document(buffer, len, options);
+    if (RETVAL == NULL) {
+        croak("parse_document: unknown error");
+    }
 OUTPUT:
     RETVAL
 
@@ -296,6 +299,9 @@ CODE:
         croak("parse_file: file is not a file handle");
     }
     RETVAL = cmark_parse_file(stream, options);
+    if (RETVAL == NULL) {
+        croak("parse_file: unknown error");
+    }
 OUTPUT:
     RETVAL
 
@@ -345,6 +351,9 @@ new(package, type)
 CODE:
     (void)package;
     RETVAL = cmark_node_new(type);
+    if (RETVAL == NULL) {
+        croak("new: out of memory");
+    }
 OUTPUT:
     RETVAL
 
@@ -365,6 +374,9 @@ iterator(cmark_node *node)
 CODE:
     S_create_or_incref_node_sv(aTHX_ node);
     RETVAL = cmark_iter_new(node);
+    if (RETVAL == NULL) {
+        croak("iterator: out of memory");
+    }
 OUTPUT:
     RETVAL
 
@@ -573,6 +585,9 @@ cmark_parser_new(package, options = 0)
 CODE:
     (void)package;
     RETVAL = cmark_parser_new(options);
+    if (RETVAL == NULL) {
+        croak("new: out of memory");
+    }
 OUTPUT:
     RETVAL
 
@@ -592,4 +607,8 @@ CODE:
 
 cmark_node*
 cmark_parser_finish(cmark_parser *parser)
+POSTCALL:
+    if (RETVAL == NULL) {
+        croak("finish: unknown error");
+    }
 
