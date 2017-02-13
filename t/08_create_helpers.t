@@ -93,7 +93,7 @@ my $expected_html = <<'EOF';
 <li>Item 1</li>
 <li>Item 2</li>
 </ol>
-<pre><code>Code block</code></pre>
+<pre><code class="language-perl">Code block</code></pre>
 <div>html</html>
 <hr />
 <p><em>emph</em>
