@@ -1,6 +1,6 @@
 Revision history for Perl module CommonMark
 
-0.240100  2015-02-17
+0.240100  2016-02-17
     - Support custom nodes (requires libcmark 0.23)
     - Export constants
     - Document more helper functions
