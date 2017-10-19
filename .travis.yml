@@ -24,7 +24,8 @@ addons:
     packages:
       - cmake
 before_install:
-  - curl -L https://github.com/jgm/cmark/archive/$CMARK_VERSION.tar.gz | tar xz
+#  - curl -L https://github.com/jgm/cmark/archive/$CMARK_VERSION.tar.gz | tar xz
+  - git clone -b add-cmake-include https://github.com/nwellnhof/cmark.git cmark-$CMARK_VERSION
   - (cd cmark-$CMARK_VERSION && make INSTALL_PREFIX="$CMARK_PREFIX" install)
   - |
       helper_dir="$(mktemp -d -t travis-perl-helpers-XXXXXX)"
