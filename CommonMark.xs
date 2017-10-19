@@ -26,6 +26,9 @@
   #error libcmark 0.21.0 is required.
 #endif
 
+#if PERL_VERSION <= 8
+  #define SvREFCNT_inc_simple_void_NN SvREFCNT_inc
+#endif
 #if PERL_VERSION <= 14
   #define sv_derived_from_pvn(sv, name, len, flags) sv_derived_from(sv, name)
 #endif
