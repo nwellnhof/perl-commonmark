@@ -67,6 +67,7 @@ C<$options> is a bit field created by ORing the following constants:
     CommonMark::OPT_SOURCEPOS
     CommonMark::OPT_HARDBREAKS
     CommonMark::OPT_SAFE
+    CommonMark::OPT_NOBREAKS
 
 Render options can be imported from L<CommonMark> with tag C<opt>.
 
@@ -81,6 +82,9 @@ XML and HTML formats.
 C<HARDBREAKS> translates newlines in the input to line breaks in the output.
 This is only supported by some renderers. The HTML renderer, for example,
 generates a C<E<lt>brE<gt>>.
+
+C<NOBREAKS> translates newlines in the input to spaces. Requires libcmark
+0.25 or higher.
 
 C<SAFE> only affects the HTML renderer. It suppresses raw HTML blocks and
 some dangerous links.
