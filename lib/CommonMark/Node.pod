@@ -79,7 +79,8 @@ C<SOURCEPOS> adds information about line numbers in the source file to the
 XML and HTML formats.
 
 C<HARDBREAKS> translates newlines in the input to line breaks in the output.
-This is only supported by some renderers.
+This is only supported by some renderers. The HTML renderer, for example,
+generates a C<E<lt>brE<gt>>.
 
 C<SAFE> only affects the HTML renderer. It suppresses raw HTML blocks and
 some dangerous links.
