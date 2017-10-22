@@ -32,6 +32,7 @@ my %WriteMakefileArgs = (
   "NAME" => "CommonMark",
   "PREREQ_PM" => {},
   "TEST_REQUIRES" => {
+    "Encode" => 0,
     "Test::More" => 0
   },
   "VERSION" => "0.280300",
@@ -46,6 +47,7 @@ my %WriteMakefileArgs = (
 );
 
 my %FallbackPrereqs = (
+  "Encode" => 0,
   "Test::More" => 0
 );
 

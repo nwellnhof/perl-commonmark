@@ -3,6 +3,7 @@ abstract: 'Interface to the CommonMark C library'
 author:
   - 'Nick Wellnhofer <wellnhofer@aevum.de>'
 build_requires:
+  Encode: '0'
   Test::More: '0'
 configure_requires:
   Devel::CheckLib: '0'
