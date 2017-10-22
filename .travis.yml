@@ -3,11 +3,11 @@ language: perl
 matrix:
   include:
     - perl: "5.8"
-      env: CMARK_VERSION=0.28.2
+      env: CMARK_VERSION=0.28.3
     - perl: "5.14"
-      env: CMARK_VERSION=0.28.2
+      env: CMARK_VERSION=0.28.3
     - perl: "5.20"
-      env: CMARK_VERSION=0.28.2 COVERAGE=1 COVERAGE_OPTS='-ignore_re /CORE/\w+\.h$'
+      env: CMARK_VERSION=0.28.3 COVERAGE=1 COVERAGE_OPTS='-ignore_re /CORE/\w+\.h$'
     - perl: "5.20"
       env: CMARK_VERSION=0.23.0
     - perl: "5.20"
@@ -24,8 +24,7 @@ addons:
     packages:
       - cmake
 before_install:
-#  - curl -L https://github.com/jgm/cmark/archive/$CMARK_VERSION.tar.gz | tar xz
-  - git clone -b add-cmake-include https://github.com/nwellnhof/cmark.git cmark-$CMARK_VERSION
+  - curl -L https://github.com/jgm/cmark/archive/$CMARK_VERSION.tar.gz | tar xz
   - (cd cmark-$CMARK_VERSION && make INSTALL_PREFIX="$CMARK_PREFIX" install)
   - |
       helper_dir="$(mktemp -d -t travis-perl-helpers-XXXXXX)"
