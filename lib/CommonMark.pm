@@ -2,14 +2,14 @@ use 5.008;
 use strict;
 use warnings;
 
+package CommonMark;
+
 use XSLoader;
 
 BEGIN {
     our $VERSION = '0.280301';
     XSLoader::load('CommonMark', $VERSION);
 }
-
-package CommonMark;
 
 use Exporter 'import';
 our %EXPORT_TAGS = (
