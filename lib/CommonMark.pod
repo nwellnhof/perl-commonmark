@@ -37,6 +37,17 @@ but there's no guarantee that it can be compiled with later versions. Also
 note that upgrading a dynamically linked version of libcmark may require
 recompilation of the Perl distribution.
 
+It is recommended to use the I<libcmark> packages provided by recent Linux
+distros. On Debian or Ubuntu, run:
+
+    sudo apt-get install libcmark-dev
+
+On Red Hat or CentOS, run:
+
+    sudo yum install cmark-devel
+
+To install I<libcmark> from source:
+
     curl -LJO https://github.com/jgm/cmark/archive/0.28.3.tar.gz
     tar xzf cmark-0.28.3.tar.gz
     cd cmark-0.28.3
