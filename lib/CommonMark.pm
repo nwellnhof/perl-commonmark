@@ -343,7 +343,9 @@ sub render {
         return $self->$method($render_opts);
     }
     if ($format =~ /^(commonmark|latex|man)\z/) {
-        return $self->$method($render_opts, $opts{width});
+        my $width = $opts{width};
+        $width = 0 if !defined($width);
+        return $self->$method($render_opts, $width);
     }
 
     die("invalid format '$format'");
