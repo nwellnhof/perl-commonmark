@@ -4,10 +4,7 @@ CommonMark::Node - Node of the CommonMark parse tree
 
 =head1 SYNOPSIS
 
-    my $html = $node->render(
-        format => 'html',
-        safe   => 1,
-    );
+    my $html = $node->render(format => 'html');
 
     my $header    = $doc->first_child;
     my $level     = $header->get_header_level;
@@ -42,14 +39,14 @@ provide a more powerful interface.
         sourcepos     => $bool,    # Optional
         hardbreaks    => $bool,    # Optional
         nobreaks      => $bool,    # Optional
-        safe          => $bool,    # Optional
+        unsafe        => $bool,    # Optional
         width         => $int,     # Optional
     );
 
 Convenience function to render documents. Supported formats are C<'html'>,
 C<'xml'>, C<'man'>, C<'commonmark'>, and C<'latex'>.
 
-C<sourcepos>, C<hardbreaks>, C<nobreaks>, and C<safe> enable the respective
+C<sourcepos>, C<hardbreaks>, C<nobreaks>, and C<unsafe> enable the respective
 render options.
 
 C<width> is passed to renderers that support it.
@@ -67,7 +64,7 @@ C<$options> is a bit field created by ORing the following constants:
     CommonMark::OPT_DEFAULT => 0
     CommonMark::OPT_SOURCEPOS
     CommonMark::OPT_HARDBREAKS
-    CommonMark::OPT_SAFE
+    CommonMark::OPT_UNSAFE
     CommonMark::OPT_NOBREAKS
 
 Render options can be imported from L<CommonMark> with tag C<opt>.
@@ -87,7 +84,7 @@ instead of a newline character.
 C<NOBREAKS> translates "softbreak" nodes to spaces. Requires libcmark
 0.25 or higher.
 
-C<SAFE> only affects the HTML renderer. It suppresses raw HTML blocks and
+C<UNSAFE> only affects the HTML renderer. It allows raw HTML blocks and
 some dangerous links.
 
 See the documentation of I<libcmark> for a more detailed explanation of the

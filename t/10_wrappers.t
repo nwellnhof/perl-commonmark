@@ -44,6 +44,7 @@ EOF
         normalize     => '0e0',
         validate_utf8 => '1',
         smart         => 'true',
+        unsafe        => 1,
     });
     my $expected = OPT_SOURCEPOS
                  | OPT_HARDBREAKS
@@ -51,7 +52,8 @@ EOF
                  | OPT_NOBREAKS
                  | OPT_NORMALIZE
                  | OPT_VALIDATE_UTF8
-                 | OPT_SMART;
+                 | OPT_SMART
+                 | OPT_UNSAFE;
     is($all_opts, $expected, 'extracting options works');
 
     my $no_opts = CommonMark::_extract_opts({
@@ -61,6 +63,7 @@ EOF
         normalize     => 0e100,
         validate_utf8 => '0',
         smart         => '',
+        unsafe        => 0,
     });
     is($no_opts, 0, 'extracting unset options works');
 }

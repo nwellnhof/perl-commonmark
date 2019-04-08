@@ -22,6 +22,7 @@ our %EXPORT_TAGS = (
         OPT_NORMALIZE
         OPT_VALIDATE_UTF8
         OPT_SMART
+        OPT_UNSAFE
     ) ],
     node => [ qw(
         NODE_NONE
@@ -81,6 +82,7 @@ my @option_map = (
     normalize     => OPT_NORMALIZE,
     validate_utf8 => OPT_VALIDATE_UTF8,
     smart         => OPT_SMART,
+    unsafe        => OPT_UNSAFE,
 );
 
 sub parse {

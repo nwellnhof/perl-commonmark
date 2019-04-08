@@ -5,7 +5,7 @@ use Symbol;
 use Test::More tests => 4;
 
 BEGIN {
-    use_ok('CommonMark', ':list', ':delim');
+    use_ok('CommonMark', ':opt', ':list', ':delim');
 }
 
 my $doc = CommonMark->create_document(
@@ -113,7 +113,7 @@ my $expected_html = <<'EOF';
 <code>code</code><br />
 <s>html1</s><s>html2</s></p>
 EOF
-is($doc->render_html, $expected_html, 'create_* helpers');
+is($doc->render_html(OPT_UNSAFE), $expected_html, 'create_* helpers');
 
 SKIP: {
     skip('Requires libcmark 0.23', 1) if CommonMark->version < 0x001700;
