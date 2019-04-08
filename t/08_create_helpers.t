@@ -79,6 +79,17 @@ my $doc = CommonMark->create_document(
                     title => 'image title',
                     text  => 'alt text',
                 ),
+                CommonMark->create_linebreak,
+                CommonMark->create_code(
+                    literal => 'code',
+                ),
+                CommonMark->create_linebreak,
+                CommonMark->create_html_inline(
+                    literal => '<s>html1</s>',
+                ),
+                CommonMark->create_inline_html(
+                    literal => '<s>html2</s>',
+                ),
             ],
         ),
     ],
@@ -98,7 +109,9 @@ my $expected_html = <<'EOF';
 <hr />
 <p><em>emph</em>
 <a href="/url" title="link title"><strong>link text</strong></a><br />
-<img src="/facepalm.jpg" alt="alt text" title="image title" /></p>
+<img src="/facepalm.jpg" alt="alt text" title="image title" /><br />
+<code>code</code><br />
+<s>html1</s><s>html2</s></p>
 EOF
 is($doc->render_html, $expected_html, 'create_* helpers');
 
