@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 6;
+use Test::More tests => 11;
 
 BEGIN {
     use_ok('CommonMark', ':opt');
@@ -65,3 +65,13 @@ EOF
     is($no_opts, 0, 'extracting unset options works');
 }
 
+{
+    my $doc = CommonMark->parse_document('test');
+
+    for my $format (qw(html xml commonmark latex man)) {
+        my $method   = "render_$format";
+        my $expected = $doc->$method();
+        my $got      = $doc->render(format => $format);
+        is($got, $expected, "render format $format");
+    }
+}
