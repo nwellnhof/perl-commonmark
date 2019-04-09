@@ -7,7 +7,7 @@ package CommonMark;
 use XSLoader;
 
 BEGIN {
-    our $VERSION = '0.280301';
+    our $VERSION = '0.290000';
     XSLoader::load('CommonMark', $VERSION);
 }
 

@@ -3,11 +3,11 @@ language: perl
 matrix:
   include:
     - perl: "5.8"
-      env: CMARK_VERSION=0.28.3
+      env: CMARK_VERSION=0.29.0
     - perl: "5.14"
-      env: CMARK_VERSION=0.28.3
+      env: CMARK_VERSION=0.29.0
     - perl: "5.20"
-      env: CMARK_VERSION=0.28.3 COVERAGE=1 COVERAGE_OPTS='-ignore_re /CORE/\w+\.h$'
+      env: CMARK_VERSION=0.29.0 COVERAGE=1 COVERAGE_OPTS='-ignore_re /CORE/\w+\.h$'
     - perl: "5.20"
       env: CMARK_VERSION=0.23.0
     - perl: "5.20"

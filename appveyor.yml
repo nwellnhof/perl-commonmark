@@ -1,5 +1,5 @@
 environment:
-  CMARK_VERSION: 0.28.2
+  CMARK_VERSION: 0.29.0
 
 install:
   - path C:\projects\cmark\bin;C:\MinGW\bin;C:\Perl\site\bin;C:\Perl\bin;C:\Windows\System32;C:\Program Files\7-Zip;C:\Program Files (x86)\CMake\bin;C:\Program Files\AppVeyor\BuildAgent
