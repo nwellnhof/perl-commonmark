@@ -1,0 +1,127 @@
+name: ✅ CI
+on: [push, pull_request]
+jobs:
+  test:
+    strategy:
+      matrix:
+        os:
+          - { icon: 🐧, name: ubuntu  }
+          - { icon: 🍎, name: macos   }
+          - { icon: 🪟, name: windows }
+        perl: [ '5.38', '5.36', '5.34', '5.32', '5.30', '5.28', '5.26', '5.24', '5.22', '5.20', '5.18', '5.16', '5.14', '5.12', '5.10', '5.8' ]
+    name: 🐪 Perl ${{ matrix.perl }} on ${{ matrix.os.icon }}
+    runs-on: ${{ matrix.os.name }}-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Perl
+        uses: shogo82148/actions-setup-perl@v1
+        with:
+          perl-version: ${{ matrix.perl }}
+
+      # CommonMark depends on Devel::CheckLib and Test::LeakTrace; install the
+      # latest EU::MM for consistent builds on on macOS as fixed here:
+      # https://github.com/Perl-Toolchain-Gang/ExtUtils-MakeMaker/pull/403
+      - name: Install Dependencies
+        run: |
+          perl -V
+          cpanm -v --notest --no-man-pages Devel::CheckLib Test::LeakTrace ExtUtils::MakeMaker
+
+      - name: Add MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+        if: runner.os == 'Windows'
+
+      - name: Test With cmark-0.30.3
+        if: runner.os != 'Windows'
+        run: ./.github/bin/build.sh 0.30.3
+
+      - name: Windows Test With cmark-0.30.3
+        if: runner.os == 'Windows'
+        run: ./.github/bin/build.ps1 -VERSION 0.30.3
+
+      - name: Test With cmark-0.29.0
+        if: runner.os != 'Windows'
+        run: ./.github/bin/build.sh 0.29.0
+
+      - name: Windows Test With cmark-0.29.0
+        if: runner.os == 'Windows'
+        run: ./.github/bin/build.ps1 -VERSION 0.29.0
+
+      - name: Test With cmark-0.28.3
+        if: runner.os != 'Windows'
+        run: ./.github/bin/build.sh 0.28.3
+
+      - name: Windows Test With cmark-0.28.3
+        if: runner.os == 'Windows'
+        run: ./.github/bin/build.ps1 -VERSION 0.28.3
+
+      - name: Test With cmark-0.27.1
+        if: runner.os != 'Windows'
+        run: ./.github/bin/build.sh 0.27.1
+
+      - name: Windows Test With cmark-0.27.1
+        if: runner.os == 'Windows'
+        run: ./.github/bin/build.ps1 -VERSION 0.27.1
+
+      - name: Test With cmark-0.26.1
+        if: runner.os != 'Windows'
+        run: ./.github/bin/build.sh 0.26.1
+
+      - name: Windows Test With cmark-0.26.1
+        if: runner.os == 'Windows'
+        run: ./.github/bin/build.ps1 -VERSION 0.26.1
+
+      - name: Test With cmark-0.25.2
+        if: runner.os != 'Windows'
+        run: ./.github/bin/build.sh 0.25.2
+
+      - name: Windows Test With cmark-0.25.2
+        if: runner.os == 'Windows'
+        run: ./.github/bin/build.ps1 -VERSION 0.25.2
+
+      - name: Test With cmark-0.24.1
+        if: runner.os != 'Windows'
+        run: ./.github/bin/build.sh 0.24.1
+
+      - name: Windows Test With cmark-0.24.1
+        if: runner.os == 'Windows'
+        run: ./.github/bin/build.ps1 -VERSION 0.24.1
+
+      - name: Test With cmark-0.20.0
+        if: runner.os != 'Windows'
+        run: ./.github/bin/build.sh 0.20.0
+
+      - name: Windows Test With cmark-0.20.0
+        if: runner.os == 'Windows'
+        run: ./.github/bin/build.ps1 -VERSION 0.20.0
+
+  apt:
+    name: 📦 cmark on 🐧
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Apt-Get
+        run: sudo apt-get update && sudo apt-get install -y libcmark-dev libdevel-checklib-perl
+
+      - name: Build and Test
+        run: |
+          perl -V
+          [ -e Makefile ] && make realclean
+          perl Makefile.PL && make test TEST_VERBOSE=1
+
+  brew:
+    name: 📦 cmark on 🍎
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Brew Install
+        run: brew install cmark cpanm && cpanm -v --notest --no-man-pages Devel::CheckLib
+
+      - name: Build and Test
+        run: |
+          perl -V
+          [ -e Makefile ] && make realclean
+          perl Makefile.PL INC="-I$(brew --prefix)/include" LIBS="-L$(brew --prefix)/lib -lcmark"
+          make test TEST_VERBOSE=1
