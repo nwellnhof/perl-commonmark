@@ -33,7 +33,7 @@ tree. L<CommonMark::Parser> provides a push parser interface.
 =head3 Installation of libcmark
 
 Please note that the I<libcmark> API isn't stable yet. This version of the
-Perl bindings is known to work with all releases between 0.21.0 and 0.30.3,
+Perl bindings is known to work with all releases between 0.21.0 and 0.31.1,
 but there's no guarantee that it can be compiled with later versions. Also
 note that upgrading a dynamically linked version of I<libcmark> may require
 recompilation of the Perl distribution.
@@ -53,9 +53,9 @@ On macOS using L<Homebrew|https://brew.sh>, run:
 
 To install I<libcmark> from source:
 
-    curl -LJO https://github.com/commonmark/cmark/archive/0.30.3.tar.gz
-    tar xzf cmark-0.30.3.tar.gz
-    cd cmark-0.30.3
+    curl -LJO https://github.com/commonmark/cmark/archive/0.31.1.tar.gz
+    tar xzf cmark-0.31.1.tar.gz
+    cd cmark-0.31.1
     make [INSTALL_PREFIX=/prefix]
     make test
     make install

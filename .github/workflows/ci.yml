@@ -31,6 +31,14 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
         if: runner.os == 'Windows'
 
+      - name: Test With cmark-0.31.1
+        if: runner.os != 'Windows'
+        run: ./.github/bin/build.sh 0.31.1
+
+      - name: Windows Test With cmark-0.31.1
+        if: runner.os == 'Windows'
+        run: ./.github/bin/build.ps1 -VERSION 0.31.1
+
       - name: Test With cmark-0.30.3
         if: runner.os != 'Windows'
         run: ./.github/bin/build.sh 0.30.3

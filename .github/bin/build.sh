@@ -9,7 +9,7 @@ exit_trap () {
 trap exit_trap EXIT
 set -ex
 
-VERSION=${CMARK_VERSION:=0.29.0}
+VERSION=${CMARK_VERSION:=0.31.1}
 BASENAME="cmark-${VERSION}"
 PREFIX="${PWD}/${BASENAME}"
 
