@@ -108,7 +108,7 @@ newline character.
 
 =item C<OPT_NOBREAKS>
 
-Translates "softbreak" nodes to spaces. Requires libcmark 0.25 or higher.
+Translates "softbreak" nodes to spaces. Requires libcmark 0.26 or higher.
 
 =item C<OPT_UNSAFE>
 
