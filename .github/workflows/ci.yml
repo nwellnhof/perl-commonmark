@@ -29,7 +29,7 @@ jobs:
 
       - name: Test With cmark-0.31.1
         if: runner.os != 'Windows'
-        run: ./.github/bin/build.sh 0.31.1
+        run: CMARK_VERSION=0.31.1 .github/bin/build.sh
 
       - name: Windows Test With cmark-0.31.1
         if: runner.os == 'Windows'
@@ -37,7 +37,7 @@ jobs:
 
       - name: Test With cmark-0.30.3
         if: runner.os != 'Windows'
-        run: ./.github/bin/build.sh 0.30.3
+        run: CMARK_VERSION=0.30.3 .github/bin/build.sh
 
       - name: Windows Test With cmark-0.30.3
         if: runner.os == 'Windows'
@@ -45,7 +45,7 @@ jobs:
 
       - name: Test With cmark-0.29.0
         if: runner.os != 'Windows'
-        run: ./.github/bin/build.sh 0.29.0
+        run: CMARK_VERSION=0.29.0 .github/bin/build.sh
 
       - name: Windows Test With cmark-0.29.0
         if: runner.os == 'Windows'
@@ -53,7 +53,7 @@ jobs:
 
       - name: Test With cmark-0.28.3
         if: runner.os != 'Windows'
-        run: ./.github/bin/build.sh 0.28.3
+        run: CMARK_VERSION=0.28.3 .github/bin/build.sh
 
       - name: Windows Test With cmark-0.28.3
         if: runner.os == 'Windows'
@@ -61,7 +61,7 @@ jobs:
 
       - name: Test With cmark-0.27.1
         if: runner.os != 'Windows'
-        run: ./.github/bin/build.sh 0.27.1
+        run: CMARK_VERSION=0.27.1 .github/bin/build.sh
 
       - name: Windows Test With cmark-0.27.1
         if: runner.os == 'Windows'
@@ -69,7 +69,7 @@ jobs:
 
       - name: Test With cmark-0.26.1
         if: runner.os != 'Windows'
-        run: ./.github/bin/build.sh 0.26.1
+        run: CMARK_VERSION=0.26.1 .github/bin/build.sh
 
       - name: Windows Test With cmark-0.26.1
         if: runner.os == 'Windows'
@@ -77,7 +77,7 @@ jobs:
 
       - name: Test With cmark-0.25.2
         if: runner.os != 'Windows'
-        run: ./.github/bin/build.sh 0.25.2
+        run: CMARK_VERSION=0.25.2 .github/bin/build.sh
 
       - name: Windows Test With cmark-0.25.2
         if: runner.os == 'Windows'
@@ -85,19 +85,16 @@ jobs:
 
       - name: Test With cmark-0.24.1
         if: runner.os != 'Windows'
-        run: ./.github/bin/build.sh 0.24.1
+        run: CMARK_VERSION=0.24.1 .github/bin/build.sh
 
       - name: Windows Test With cmark-0.24.1
         if: runner.os == 'Windows'
         run: ./.github/bin/build.ps1 -VERSION 0.24.1
 
-      - name: Test With cmark-0.20.0
+      # 0.22.0 and below don't install libcmark.dll.a on Windows
+      - name: Test With cmark-0.21.0
         if: runner.os != 'Windows'
-        run: ./.github/bin/build.sh 0.20.0
-
-      - name: Windows Test With cmark-0.20.0
-        if: runner.os == 'Windows'
-        run: ./.github/bin/build.ps1 -VERSION 0.20.0
+        run: CMARK_VERSION=0.21.0 .github/bin/build.sh
 
   apt:
     name: 📦 cmark on 🐧
