@@ -27,10 +27,6 @@ jobs:
           perl -V
           cpanm -v --notest --no-man-pages Devel::CheckLib Test::LeakTrace ExtUtils::MakeMaker
 
-      - name: Add MSVC
-        uses: ilammy/msvc-dev-cmd@v1
-        if: runner.os == 'Windows'
-
       - name: Test With cmark-0.31.1
         if: runner.os != 'Windows'
         run: ./.github/bin/build.sh 0.31.1
