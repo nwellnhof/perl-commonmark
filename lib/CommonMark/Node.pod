@@ -115,10 +115,11 @@ Translates "softbreak" nodes to spaces. Requires libcmark 0.26 or higher.
 Only affects the HTML renderer. It allows raw HTML blocks and some dangerous
 links.
 
-=item C<OPT_OPT_SAFE>
+=item C<OPT_SAFE>
 
-Replaces raw HTML with a placeholder HTML comment. This option has no effect
-with libcmark 0.29 or higher, where "Safe" mode is the default.
+Replaces raw HTML with a placeholder HTML comment. This option is the
+default since version 0.290000 and has no effect except to override
+C<OPT_UNSAFE>.
 
 =back
 
