@@ -16,7 +16,7 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "Devel::CheckLib" : "0",
+            "Devel::CheckLib" : "1.05",
             "ExtUtils::MakeMaker" : "0"
          }
       },
