@@ -1,17 +1,14 @@
-name: ✅ CI
+name: CI
 on: [push, pull_request]
 jobs:
   test:
     strategy:
       fail-fast: false
       matrix:
-        os:
-          - { icon: 🐧, name: ubuntu  }
-          - { icon: 🍎, name: macos   }
-          - { icon: 🪟, name: windows }
+        os: [ 'ubuntu', 'macos', 'windows' ]
         perl: [ '5.38', '5.36', '5.34', '5.32', '5.30', '5.28', '5.26', '5.24', '5.22', '5.20', '5.18', '5.16', '5.14', '5.12', '5.10', '5.8' ]
-    name: 🐪 Perl ${{ matrix.perl }} on ${{ matrix.os.icon }}
-    runs-on: ${{ matrix.os.name }}-latest
+    name: Perl ${{ matrix.perl }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}-latest
     steps:
       - uses: actions/checkout@v4
 
@@ -98,7 +95,7 @@ jobs:
         run: CMARK_VERSION=0.21.0 .github/bin/build.sh
 
   apt:
-    name: 📦 cmark on 🐧
+    name: Ubuntu packages
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -113,7 +110,7 @@ jobs:
           perl Makefile.PL && make test TEST_VERBOSE=1
 
   brew:
-    name: 📦 cmark on 🍎
+    name: Homebrew packages
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
