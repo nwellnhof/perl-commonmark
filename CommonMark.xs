@@ -19,6 +19,16 @@
 #include "perl.h"
 #include "XSUB.h"
 
+/*
+ * XS INTERFACE declares the function pointer as "ret (*)()". Since C23
+ * an empty parameter list means (void), so calling it with arguments fails.
+ * Give the pointer a real prototype, set per group of interface functions.
+ */
+#undef dXSFUNCTION
+#undef XSINTERFACE_FUNC
+#define dXSFUNCTION(ret)           ret (*XSFUNCTION)(IFACE_ARGS)
+#define XSINTERFACE_FUNC(ret,cv,f) ((ret (*)(IFACE_ARGS))(f))
+
 #include <stdlib.h>
 #include <cmark.h>
 
@@ -412,6 +422,9 @@ CODE:
 OUTPUT:
     RETVAL
 
+#undef IFACE_ARGS
+#define IFACE_ARGS cmark_node *
+
 cmark_node*
 interface_get_node(cmark_node *node)
 INTERFACE:
@@ -420,6 +433,9 @@ INTERFACE:
     cmark_node_parent
     cmark_node_first_child
     cmark_node_last_child
+
+#undef IFACE_ARGS
+#define IFACE_ARGS cmark_node *
 
 int
 interface_get_int(cmark_node *node)
@@ -435,6 +451,9 @@ INTERFACE:
     cmark_node_get_end_line
     cmark_node_get_end_column
 
+#undef IFACE_ARGS
+#define IFACE_ARGS cmark_node *, int
+
 NO_OUTPUT int
 interface_set_int(cmark_node *node, int value)
 INTERFACE:
@@ -448,6 +467,9 @@ POSTCALL:
         croak("%s: invalid operation", GvNAME(CvGV(cv)));
     }
 
+#undef IFACE_ARGS
+#define IFACE_ARGS cmark_node *
+
 const char*
 interface_get_utf8(cmark_node *node)
 INTERFACE:
@@ -458,6 +480,9 @@ INTERFACE:
     cmark_node_get_fence_info
     cmark_node_get_on_enter
     cmark_node_get_on_exit
+
+#undef IFACE_ARGS
+#define IFACE_ARGS cmark_node *, const char *
 
 NO_OUTPUT int
 interface_set_utf8(cmark_node *node, const char *value)
@@ -503,6 +528,9 @@ CODE:
     }
     S_decref_node_sv(aTHX_ old_parent);
 
+#undef IFACE_ARGS
+#define IFACE_ARGS cmark_node *, cmark_node *
+
 NO_OUTPUT int
 interface_move_node(cmark_node *node, cmark_node *other)
 PREINIT:
@@ -522,6 +550,9 @@ POSTCALL:
     new_parent = cmark_node_parent(other);
     S_transfer_refcount(aTHX_ old_parent, new_parent);
 
+#undef IFACE_ARGS
+#define IFACE_ARGS cmark_node *, int
+
 char*
 interface_render(cmark_node *root, int options = 0)
 INIT:
@@ -529,6 +560,9 @@ INIT:
 INTERFACE:
     cmark_node_render_html
     cmark_node_render_xml
+
+#undef IFACE_ARGS
+#define IFACE_ARGS cmark_node *, int, int
 
 char*
 interface_render_width(cmark_node *root, int options = 0, int width = 0)
